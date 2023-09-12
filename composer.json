@@ -1,0 +1,18 @@
+{
+    "require": {
+        "php": "^8.2",
+        "slim/slim": "4.*",
+        "slim/psr7": "^1.6",
+        "php-di/slim-bridge": "^3.4",
+        "symfony/serializer": "^6.3",
+        "symfony/property-access": "^6.3",
+        "ocramius/proxy-manager": "^1.0",
+        "guzzlehttp/guzzle": "^7.8",
+        "ext-calendar": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Cvgore\\RandomThings\\": "./src/"
+        }
+    }
+}
