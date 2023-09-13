@@ -20,7 +20,8 @@
                 "szkalowanie czas zacząć",
                 "https://www.youtube.com/watch?v=WQsaVznexqw",
                 "Wieczny odpoczynek racz im dać Panie. Amen",
-                "habemus patatam"
+                "habemus patatam",
+                "siejeje siejeje sie jeee jeee, sie jeee jeee, sie je jeeee"
             ]
         },
         "wtc": {
@@ -83,11 +84,17 @@
         },
         "nnn": {
             "gifTag": "No nut november",
-            "entries":[
+            "entries": [
                 "Dzień dobry o poranku, zaczyna sie No Nut November - kto dotrwa do końca ten otrzyma zasłużoną nagrodę DDD - Destroy Dick December",
                 "Igrzyska w niewaleniu gruchy przez miesiąc uważam za otwarte",
                 "Zamykać kartę z pornosami, zrób se przerwy z miesiąc",
                 "NNN"
+            ]
+        },
+        "test": {
+            "gifTag": "funny cat",
+            "entries": [
+                "to jest test losowych eventów, boże prosze działaj wreszcie. tym czasem łap koteła:"
             ]
         }
     }
