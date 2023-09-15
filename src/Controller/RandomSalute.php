@@ -40,7 +40,12 @@ final readonly class RandomSalute implements ControllerInterface
 
 		$gifTag = $this->saluteRepository->getGifTagForCategory($data->category);
 
-		$body = new SaluteResponse(salute: $salute, gifUrl: $this->giphyRepository->getRandomGifForTag($gifTag));
+		if ($data->category === 'test') {
+			$gifUrl = $this->giphyRepository->getDefaultGif();
+		} else {
+			$gifUrl = $this->giphyRepository->getRandomGifForTag($gifTag);
+		}
+		$body = new SaluteResponse(salute: $salute, gifUrl: $gifUrl);
 
 		$response->getBody()
 			->write($this->serializer->serialize($body, 'json'));

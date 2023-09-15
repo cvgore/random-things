@@ -15,6 +15,9 @@ final readonly class GiphyRepository
 	#[Inject(name: 'giphy.api_key')]
 	private string $apiKey;
 
+	#[Inject(name: 'giphy.default_gif_url')]
+	private string $defaultGifUrl;
+
 	#[Inject]
 	private HttpClient $client;
 
@@ -33,5 +36,10 @@ final readonly class GiphyRepository
 		assert(array_key_exists('embed_url', $body['data']));
 
 		return $body['data']['embed_url'];
+	}
+
+	public function getDefaultGif(): string
+	{
+		return $this->defaultGifUrl;
 	}
 }

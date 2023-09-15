@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Cvgore\RandomThings\Generator;
 
 use Cvgore\RandomThings\Provider\CurrentDateProvider;
-use Cvgore\RandomThings\Repository\External\WeatherForecastRepository;
 use Cvgore\RandomThings\Repository\External\NameDaysRepository;
+use Cvgore\RandomThings\Repository\External\WeatherForecastRepository;
 use DI\Attribute\Inject;
 
 final readonly class MorningSaluteGenerator

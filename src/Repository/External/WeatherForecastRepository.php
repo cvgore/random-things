@@ -32,7 +32,7 @@ final readonly class WeatherForecastRepository
 				'lon' => $this->location['lng'],
 			]
 		);
-		
+
 		if ($body === null) {
 			return null;
 		}

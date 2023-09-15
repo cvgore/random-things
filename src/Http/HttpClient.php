@@ -44,11 +44,7 @@ final readonly class HttpClient
 				return null;
 			}
 
-			return json_decode(
-				json: (string) $response->getBody(),
-				associative: true,
-				flags: JSON_THROW_ON_ERROR,
-			);
+			return json_decode(json: (string) $response->getBody(), associative: true, flags: JSON_THROW_ON_ERROR);
 		} catch (RequestException|JsonException) {
 			return null;
 		}
