@@ -6,3 +6,7 @@ psalm:
 
 format:
 	docker run -it --rm -v "${PWD}":/app -w /app php:8.2-cli /app/vendor/bin/ecs --fix
+
+prod-cache-clear:
+	rm var/tmp/CompiledContainer.php
+	echo "cache cleared"
