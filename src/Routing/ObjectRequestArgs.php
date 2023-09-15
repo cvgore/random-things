@@ -10,12 +10,12 @@ use Slim\Interfaces\InvocationStrategyInterface;
 
 class ObjectRequestArgs implements InvocationStrategyInterface
 {
-    public function __invoke(
-        callable $callable,
-        ServerRequestInterface $request,
-        ResponseInterface $response,
-        array $routeArguments
-    ): ResponseInterface {
-        return $callable($request, $response, $request->getAttribute('data'));
-    }
+	public function __invoke(
+		callable $callable,
+		ServerRequestInterface $request,
+		ResponseInterface $response,
+		array $routeArguments
+	): ResponseInterface {
+		return $callable($request, $response, $request->getAttribute('data'));
+	}
 }

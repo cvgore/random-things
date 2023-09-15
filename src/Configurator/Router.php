@@ -11,23 +11,22 @@ use Slim\App;
 
 final readonly class Router implements ConfiguratorInterface
 {
-    #[Inject]
-    private App $app;
+	#[Inject]
+	private App $app;
 
-    #[Inject(name: "controllers")]
-    private array $controllers;
-    
-    public function configure(): void
-    {
-        $this->app->addRoutingMiddleware();
-        
-        $routeCollector = $this->app->getRouteCollector();
-        $routeCollector->setDefaultInvocationStrategy(new ObjectRequestArgs());
-        
-        /** @var ControllerInterface $controller */
-        foreach ($this->controllers as $controller)
-        {
-            $this->app->get($controller->getRoutePattern(), [$controller, 'handle']);
-        }
-    }
+	#[Inject(name: 'controllers')]
+	private array $controllers;
+
+	public function configure(): void
+	{
+		$this->app->addRoutingMiddleware();
+
+		$routeCollector = $this->app->getRouteCollector();
+		$routeCollector->setDefaultInvocationStrategy(new ObjectRequestArgs());
+
+		/** @var ControllerInterface $controller */
+		foreach ($this->controllers as $controller) {
+			$this->app->get($controller->getRoutePattern(), $controller::class . ':handle');
+		}
+	}
 }

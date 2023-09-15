@@ -4,7 +4,10 @@ declare(strict_types=1);
 
 namespace Cvgore\RandomThings\Dto;
 
-final class RandomSaluteRequest
+final readonly class RandomSaluteRequest
 {
-    public string $category;
+	public function __construct(
+		public string $category,
+	) {
+	}
 }

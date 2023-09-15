@@ -4,16 +4,16 @@ declare(strict_types=1);
 
 namespace Cvgore\RandomThings\Controller;
 
-use Cvgore\RandomThings\Dto\RandomSaluteRequest;
 use Cvgore\RandomThings\Dto\SaluteResponse;
+use Cvgore\RandomThings\Generator\MorningSaluteGenerator;
 use Cvgore\RandomThings\Repository\External\GiphyRepository;
-use Cvgore\RandomThings\Repository\SaluteRepository;
 use DI\Attribute\Inject;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
+
 use Symfony\Component\Serializer\SerializerInterface;
 
-final readonly class RandomSalute implements ControllerInterface
+final readonly class MorningSalute implements ControllerInterface
 {
 	#[Inject]
 	private SerializerInterface $serializer;
@@ -22,25 +22,19 @@ final readonly class RandomSalute implements ControllerInterface
 	private GiphyRepository $giphyRepository;
 
 	#[Inject]
-	private SaluteRepository $saluteRepository;
+	private MorningSaluteGenerator $morningSaluteGenerator;
 
 	public function getRoutePattern(): string
 	{
-		return '/v1/salute/random';
+		return '/v1/salute/morning';
 	}
 
-	public function handle(Request $request, Response $response, RandomSaluteRequest $data): Response
+	public function handle(Request $request, Response $response): Response
 	{
-		$salute = $this->saluteRepository->getRandomSaluteForCategory($data->category);
+		$salute = $this->morningSaluteGenerator->generate();
+		$gifUrl = $this->giphyRepository->getRandomGifForTag('funny cat');
 
-		if ($salute === null) {
-			return $response
-				->withStatus(404);
-		}
-
-		$gifTag = $this->saluteRepository->getGifTagForCategory($data->category);
-
-		$body = new SaluteResponse(salute: $salute, gifUrl: $this->giphyRepository->getRandomGifForTag($gifTag));
+		$body = new SaluteResponse(salute: $salute, gifUrl: $gifUrl);
 
 		$response->getBody()
 			->write($this->serializer->serialize($body, 'json'));

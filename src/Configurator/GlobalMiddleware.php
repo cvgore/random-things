@@ -9,17 +9,16 @@ use Slim\App;
 
 final readonly class GlobalMiddleware implements ConfiguratorInterface
 {
-    #[Inject(name: "global_middleware")]
-    private array $middleware;
-    
-    #[Inject]
-    private App $app;
-    
-    public function configure(): void
-    {
-        foreach ($this->middleware as $middleware)
-        {
-            $this->app->add($middleware);
-        }
-    }
+	#[Inject(name: 'global_middleware')]
+	private array $middleware;
+
+	#[Inject]
+	private App $app;
+
+	public function configure(): void
+	{
+		foreach ($this->middleware as $middleware) {
+			$this->app->add($middleware);
+		}
+	}
 }

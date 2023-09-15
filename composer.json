@@ -7,12 +7,16 @@
         "symfony/serializer": "^6.3",
         "symfony/property-access": "^6.3",
         "ocramius/proxy-manager": "^1.0",
-        "guzzlehttp/guzzle": "^7.8",
-        "ext-calendar": "*"
+        "guzzlehttp/guzzle": "^7.8"
     },
     "autoload": {
         "psr-4": {
             "Cvgore\\RandomThings\\": "./src/"
         }
+    },
+    "require-dev": {
+        "symplify/easy-coding-standard": "^12.0",
+        "vimeo/psalm": "^5.15",
+        "symfony/var-dumper": "^6.3"
     }
 }

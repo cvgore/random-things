@@ -4,12 +4,11 @@ declare(strict_types=1);
 
 namespace Cvgore\RandomThings\Dto;
 
-use DateTimeImmutable;
-
-final readonly class NextEasterResponse
+final readonly class SaluteResponse
 {
 	public function __construct(
-		public DateTimeImmutable $nextEasterAt,
+		public string $salute,
+		public string $gifUrl,
 	) {
 	}
 }

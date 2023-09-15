@@ -10,13 +10,13 @@ use Slim\Exception\HttpNotFoundException;
 
 final readonly class NotFoundFallbackRouter implements ConfiguratorInterface
 {
-    #[Inject]
-    private App $app;
-    
-    public function configure(): void
-    {
-        $this->app->map(['GET', 'POST', 'PUT', 'DELETE', 'PATCH'], '/{routes:.+}', function ($request) {
-            throw new HttpNotFoundException($request);
-        });
-    }
+	#[Inject]
+	private App $app;
+
+	public function configure(): void
+	{
+		$this->app->map(['GET', 'POST', 'PUT', 'DELETE', 'PATCH'], '/{routes:.+}', function ($request) {
+			throw new HttpNotFoundException($request);
+		});
+	}
 }
