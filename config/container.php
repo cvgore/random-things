@@ -7,6 +7,10 @@ if (!defined('APP_CTX')) die;
 return [
     'api_keys' => [],
     'show_errors' => false,
+
+    'morning_salute.gif_tag' => 'cat xd',
+    'giphy.default_gif_url' => 'https://giphy.com/embed/sgxdxAK44EXcI',
+
     'path.root' => __DIR__ . '/../',
 
     'configurators' => [

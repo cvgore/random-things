@@ -24,6 +24,9 @@ final readonly class MorningSalute implements ControllerInterface
 	#[Inject]
 	private MorningSaluteGenerator $morningSaluteGenerator;
 
+	#[Inject('morning_salute.gif_tag')]
+	private string $gifTag;
+
 	public function getRoutePattern(): string
 	{
 		return '/v1/salute/morning';
@@ -32,7 +35,7 @@ final readonly class MorningSalute implements ControllerInterface
 	public function handle(Request $request, Response $response): Response
 	{
 		$salute = $this->morningSaluteGenerator->generate();
-		$gifUrl = $this->giphyRepository->getRandomGifForTag('funny cat');
+		$gifUrl = $this->giphyRepository->getRandomGifForTag($this->gifTag);
 
 		$body = new SaluteResponse(salute: $salute, gifUrl: $gifUrl);
 
