@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Cvgore\RandomThings\Repository;
 
+use Cvgore\RandomThings\Dto\SaluteEntity;
 use Cvgore\RandomThings\Generator\PathGenerator;
 use DI\Attribute\Inject;
 use Random\Randomizer;
 use Symfony\Component\Serializer\SerializerInterface;
 use Zend\Stdlib\InitializableInterface;
-use Cvgore\RandomThings\Dto\SaluteEntity;
 
 final class SaluteRepository implements InitializableInterface
 {
@@ -43,10 +43,7 @@ final class SaluteRepository implements InitializableInterface
 		[$itemId] = $this->randomizer->pickArrayKeys($entries, 1);
 		$entry = $entries[$itemId];
 
-		return new SaluteEntity(
-			content: $entry['content'],
-			withGif: $entry['withGif']
-		);
+		return new SaluteEntity(content: $entry['content'], withGif: $entry['withGif']);
 	}
 
 	public function getGifTagForCategory(string $category): ?string

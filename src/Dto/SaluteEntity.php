@@ -6,9 +6,9 @@ namespace Cvgore\RandomThings\Dto;
 
 final readonly class SaluteEntity
 {
-    public function __construct(
-        public string $content,
+	public function __construct(
+		public string $content,
 		public bool $withGif,
-    ) {
-    }
+	) {
+	}
 }
