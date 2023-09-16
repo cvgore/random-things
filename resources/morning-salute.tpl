@@ -1,4 +1,3 @@
-Dzień dobry tego pięknego poranka, mamy dzisiaj @today.
-Imieniny obchodzą @nameDays - normalnie cieszę się Waszym szczęściem.
+Bambolełoooooo - day @today. Imieniny @nameDays.
 Dzisiejsza prognoza pogody - @weatherPrediction.
-Koniec pierdolenia - trzymaj losowego gifa z kotkiem.
+Gif z kotkiem xd na koniec.

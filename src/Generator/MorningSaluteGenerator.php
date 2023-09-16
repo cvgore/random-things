@@ -30,7 +30,7 @@ final readonly class MorningSaluteGenerator
 		$nameDays = $this->nameDaysRepository->getNameDaysForToday();
 		$nameDays = $nameDays
 			? implode(',', $nameDays)
-			: '<niewiadomo kto>';
+			: '<niewiadomo kogo>';
 
 		$weatherPrediction = $this->weatherForecastRepository->getForecastForToday();
 		if (! $weatherPrediction) {
