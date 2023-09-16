@@ -38,14 +38,19 @@ final readonly class RandomSalute implements ControllerInterface
 				->withStatus(404);
 		}
 
-		$gifTag = $this->saluteRepository->getGifTagForCategory($data->category);
+		$gifUrl = null;
 
-		if ($data->category === 'test') {
-			$gifUrl = $this->giphyRepository->getDefaultGif();
-		} else {
-			$gifUrl = $this->giphyRepository->getRandomGifForTag($gifTag);
+		if ($salute->withGif) {
+			$gifTag = $this->saluteRepository->getGifTagForCategory($data->category);
+
+			if ($data->category === 'test') {
+				$gifUrl = $this->giphyRepository->getDefaultGif();
+			} else {
+				$gifUrl = $this->giphyRepository->getRandomGifForTag($gifTag);
+			}
 		}
-		$body = new SaluteResponse(salute: $salute, gifUrl: $gifUrl);
+
+		$body = new SaluteResponse(salute: $salute->content, gifUrl: $gifUrl);
 
 		$response->getBody()
 			->write($this->serializer->serialize($body, 'json'));

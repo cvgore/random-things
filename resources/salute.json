@@ -1,99 +1,285 @@
 {
     "jp2": {
-        "gifTag": "Jan Paweł II",
+        "gifTag": "jp2",
         "entries": [
-            "chwała wielkiemu zbrodniarzowi",
-            "jp2gmd",
-            "papierzaki, do hymnu",
-            "twoonethreeseven",
-            "papierz3721 lubi cie",
-            "Poczekaj chwilę na mnie, muszę trochę popapierzyć",
-            "Niech żyje papierz!",
-            "Ale dziś rzułciutki",
-            "Śpij słodko aniołku",
-            "Nie no dzisiaj dajmy se spokój",
-            "Rzułta morda w Twojej okolicy",
-            "2 kwietnia 2023 w Warszawie i w całej Polsce odbył się Narodowy Marsz Papieski w 18. rocznicę śmierci św. Jana Pawła II",
-            "21:37 - powieść kryminalna polskiego pisarza Mariusza Czubaja, pierwsza część przygód profilera Rudolfa Heinza. Akcja książki toczy się wiosną 2007 w Warszawie oraz na Śląsku",
-            "Jan Paweł 2 był wielkim Polakiem",
-            "szkalowanie czas zacząć",
-            "https://www.youtube.com/watch?v=WQsaVznexqw",
-            "Wieczny odpoczynek racz im dać Panie. Amen",
-            "habemus patatam",
-            "siejeje siejeje sie jeee jeee, sie jeee jeee, sie je jeeee"
+            {
+                "content": "chwała wielkiemu zbrodniarzowi",
+                "withGif": true
+            },
+            {
+                "content": "jp2gmd",
+                "withGif": true
+            },
+            {
+                "content": "papierzaki, do hymnu",
+                "withGif": true
+            },
+            {
+                "content": "twoonethreeseven",
+                "withGif": true
+            },
+            {
+                "content": "papierz3721 lubi cie",
+                "withGif": true
+            },
+            {
+                "content": "Poczekaj chwilę na mnie, muszę trochę popapierzyć",
+                "withGif": true
+            },
+            {
+                "content": "Niech żyje papierz!",
+                "withGif": true
+            },
+            {
+                "content": "Ale dziś rzułciutki",
+                "withGif": true
+            },
+            {
+                "content": "Śpij słodko aniołku",
+                "withGif": true
+            },
+            {
+                "content": "Nie no dzisiaj dajmy se spokój",
+                "withGif": true
+            },
+            {
+                "content": "Rzułta morda w Twojej okolicy",
+                "withGif": true
+            },
+            {
+                "content": "2 kwietnia 2023 w Warszawie i w całej Polsce odbył się Narodowy Marsz Papieski w 18. rocznicę śmierci św. Jana Pawła II",
+                "withGif": true
+            },
+            {
+                "content": "21:37 - powieść kryminalna polskiego pisarza Mariusza Czubaja, pierwsza część przygód profilera Rudolfa Heinza. Akcja książki toczy się wiosną 2007 w Warszawie oraz na Śląsku",
+                "withGif": true
+            },
+            {
+                "content": "Jan Paweł 2 był wielkim Polakiem",
+                "withGif": true
+            },
+            {
+                "content": "szkalowanie czas zacząć",
+                "withGif": true
+            },
+            {
+                "content": "https://www.youtube.com/watch?v=WQsaVznexqw",
+                "withGif": false
+            },
+            {
+                "content": "Wieczny odpoczynek racz im dać Panie. Amen",
+                "withGif": true
+            },
+            {
+                "content": "habemus patatam",
+                "withGif": true
+            },
+            {
+                "content": "siejeje siejeje sie jeee jeee, sie jeee jeee, sie je jeeee",
+                "withGif": true
+            }
         ]
     },
     "wtc": {
-        "gifTag": "WTC Aeroplane",
+        "gifTag": "WTC aeroplane",
         "entries": [
-            "Za górami, za lasami żył Bin Laden z Talibami. Aż pewnego dnia we wtorek gdy dopisał mu humorek, zamiast \"escape\" wcisnął \"enter\" i rozj*bał World Trade Center!",
-            "Dzień dobry 9 listopada 2001 roku! Za oknami słoneczna pogoda, zapowiada się bombowy dzień",
-            "No i chuj, po dwóch wieżach :/",
-            "11 września 1941 roku w Waszyngtonie rozpoczęto budowę Pentagonu",
-            "WTC> Taken damage 100%",
-            "Wieczny odpoczynek racz im dać Panie. Amen",
-            "https://youtu.be/sBciZFE8lAw?t=1074"
+            {
+                "content": "Za górami, za lasami żył Bin Laden z Talibami. Aż pewnego dnia we wtorek gdy dopisał mu humorek, zamiast \"escape\" wcisnął \"enter\" i rozj*bał World Trade Center!",
+                "withGif": true
+            },
+            {
+                "content": "Dzień dobry 9 listopada 2001 roku! Za oknami słoneczna pogoda, zapowiada się bombowy dzień",
+                "withGif": true
+            },
+            {
+                "content": "No i chuj, po dwóch wieżach :/",
+                "withGif": true
+            },
+            {
+                "content": "11 września 1941 roku w Waszyngtonie rozpoczęto budowę Pentagonu",
+                "withGif": true
+            },
+            {
+                "content": "WTC> Taken damage 100%",
+                "withGif": true
+            },
+            {
+                "content": "Wieczny odpoczynek racz im dać Panie. Amen",
+                "withGif": true
+            },
+            {
+                "content": "https://youtu.be/sBciZFE8lAw?t=1074",
+                "withGif": false
+            }
         ]
     },
     "smolensk-monthly": {
-        "gifTag": "Jarek Kaczyński Smoleńsk",
+        "gifTag": "aeroplane crash",
         "entries": [
-            "Pull up, pull up!",
-            "Kokaina w nosie, lecimy samolotem!",
-            "10 kwietnia 1999 wystartował kanał Eurosport Polska.",
-            "10 dzień miesiąca, ja leże jak kłoda",
-            "Brzoza.TV wypuścił nowy materiał - podobno niskich lotów jak ten niby-żart",
-            "10 kwietnia 1246 Elbląg uzyskał prawa miejskie",
-            "10 maja 2003 powstał kanał TVN Meteo",
-            "10 maja 1997 Papież Jan Paweł II rozpoczął podróż apostolską do Libanu",
-            "Biedna kaczka",
-            "Katastrofa smoleńska",
-            "Leci leci samolocik",
-            "https://youtu.be/rY0WxgSXdEE?t=89",
-            "https://youtu.be/digUeExEhBA",
-            "https://youtu.be/VPBbqc8W47Q",
-            "Ej chłopaki ja spadam jak coś",
-            "Wieczny odpoczynek racz im dać Panie. Amen",
-            "https://youtu.be/HuUmoSjCRLQ",
-            "https://youtu.be/AwICmvGya64"
+            {
+                "content": "Pull up, pull up!",
+                "withGif": true
+            },
+            {
+                "content": "Kokaina w nosie, lecimy samolotem!",
+                "withGif": true
+            },
+            {
+                "content": "10 kwietnia 1999 wystartował kanał Eurosport Polska.",
+                "withGif": true
+            },
+            {
+                "content": "10 dzień miesiąca, ja leże jak kłoda",
+                "withGif": true
+            },
+            {
+                "content": "Brzoza.TV wypuścił nowy materiał - podobno niskich lotów jak ten niby-żart",
+                "withGif": true
+            },
+            {
+                "content": "10 kwietnia 1246 Elbląg uzyskał prawa miejskie",
+                "withGif": true
+            },
+            {
+                "content": "10 maja 2003 powstał kanał TVN Meteo",
+                "withGif": true
+            },
+            {
+                "content": "10 maja 1997 Papież Jan Paweł II rozpoczął podróż apostolską do Libanu",
+                "withGif": true
+            },
+            {
+                "content": "Biedna kaczka",
+                "withGif": true
+            },
+            {
+                "content": "Katastrofa smoleńska",
+                "withGif": true
+            },
+            {
+                "content": "Leci leci samolocik",
+                "withGif": true
+            },
+            {
+                "content": "https://youtu.be/rY0WxgSXdEE?t=89",
+                "withGif": false
+            },
+            {
+                "content": "https://youtu.be/digUeExEhBA",
+                "withGif": false
+            },
+            {
+                "content": "https://youtu.be/VPBbqc8W47Q",
+                "withGif": false
+            },
+            {
+                "content": "Ej chłopaki ja spadam jak coś",
+                "withGif": true
+            },
+            {
+                "content": "Wieczne odpocznienie racz im dać Panie. Amen",
+                "withGif": true
+            },
+            {
+                "content": "https://youtu.be/HuUmoSjCRLQ",
+                "withGif": false
+            },
+            {
+                "content": "https://youtu.be/AwICmvGya64",
+                "withGif": false
+            }
         ]
     },
     "easter": {
-        "gifTag": "święta wielkanocne",
+        "gifTag": "wielkanoc",
         "entries": [
-            "https://youtu.be/-7FbzYtj40E",
-            "https://youtu.be/U-Ada6gJo8g",
-            "https://youtu.be/J6s_IRAjQWk",
-            "https://youtu.be/xlEwcQiS030",
-            "wesołego jaja <3"
+            {
+                "content": "https://youtu.be/-7FbzYtj40E",
+                "withGif": false
+            },
+            {
+                "content": "https://youtu.be/U-Ada6gJo8g",
+                "withGif": false
+            },
+            {
+                "content": "https://youtu.be/J6s_IRAjQWk",
+                "withGif": false
+            },
+            {
+                "content": "https://youtu.be/xlEwcQiS030",
+                "withGif": false
+            },
+            {
+                "content": "wesołego jaja <3",
+                "withGif": true
+            }
         ]
     },
     "xmas": {
-        "gifTag": "święta bożego narodzenia",
+        "gifTag": "boże narodzenie",
         "entries": [
-            "https://youtu.be/v138DWiyNeQ",
-            "https://youtu.be/gRdQZMFT0zg?t=1058",
-            "https://youtu.be/gRdQZMFT0zg?t=488",
-            "https://youtu.be/N-PyWfVkjZc",
-            "https://youtu.be/E8gmARGvPlI",
-            "https://youtu.be/aAkMkVFwAoo",
-            "https://youtu.be/ae-vd_in8DA",
-            "wesołych świąt"
+            {
+                "content": "https://youtu.be/v138DWiyNeQ",
+                "withGif": false
+            },
+            {
+                "content": "https://youtu.be/gRdQZMFT0zg?t=1058",
+                "withGif": false
+            },
+            {
+                "content": "https://youtu.be/gRdQZMFT0zg?t=488",
+                "withGif": false
+            },
+            {
+                "content": "https://youtu.be/N-PyWfVkjZc",
+                "withGif": false
+            },
+            {
+                "content": "https://youtu.be/E8gmARGvPlI",
+                "withGif": false
+            },
+            {
+                "content": "https://youtu.be/aAkMkVFwAoo",
+                "withGif": false
+            },
+            {
+                "content": "https://youtu.be/ae-vd_in8DA",
+                "withGif": false
+            },
+            {
+                "content": "wesołych świąt",
+                "withGif": true
+            }
         ]
     },
     "nnn": {
         "gifTag": "no nut november",
         "entries": [
-            "Dzień dobry o poranku, zaczyna sie No Nut November - kto dotrwa do końca ten otrzyma zasłużoną nagrodę DDD - Destroy Dick December",
-            "Igrzyska w niewaleniu gruchy przez miesiąc uważam za otwarte",
-            "Zamykać kartę z pornosami, zrób se przerwy z miesiąc",
-            "NNN"
+            {
+                "content": "Dzień dobry o poranku, zaczyna sie No Nut November - kto dotrwa do końca ten otrzyma zasłużoną nagrodę DDD - Destroy Dick December",
+                "withGif": true
+            },
+            {
+                "content": "Igrzyska w niewaleniu gruchy przez miesiąc uważam za otwarte",
+                "withGif": true
+            },
+            {
+                "content": "Zamykać kartę z pornosami, zrób se przerwy z miesiąc",
+                "withGif": true
+            },
+            {
+                "content": "NNN",
+                "withGif": true
+            }
         ]
     },
     "test": {
         "gifTag": "funny cat",
         "entries": [
-            "to jest test losowych eventów, boże prosze działaj wreszcie. tym czasem łap koteła:"
+            {
+                "content": "to jest test losowych eventów, boże prosze działaj wreszcie. tym czasem łap koteła:",
+                "withGif": true
+            }
         ]
     }
 }

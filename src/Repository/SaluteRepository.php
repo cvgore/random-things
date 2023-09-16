@@ -7,7 +7,9 @@ namespace Cvgore\RandomThings\Repository;
 use Cvgore\RandomThings\Generator\PathGenerator;
 use DI\Attribute\Inject;
 use Random\Randomizer;
+use Symfony\Component\Serializer\SerializerInterface;
 use Zend\Stdlib\InitializableInterface;
+use Cvgore\RandomThings\Dto\SaluteEntity;
 
 final class SaluteRepository implements InitializableInterface
 {
@@ -16,6 +18,9 @@ final class SaluteRepository implements InitializableInterface
 
 	#[Inject]
 	private readonly PathGenerator $pathGenerator;
+
+	#[Inject]
+	private readonly SerializerInterface $serializer;
 
 	private array $data;
 
@@ -28,7 +33,7 @@ final class SaluteRepository implements InitializableInterface
 		);
 	}
 
-	public function getRandomSaluteForCategory(string $category): ?string
+	public function getRandomSaluteForCategory(string $category): ?SaluteEntity
 	{
 		if (! array_key_exists($category, $this->data)) {
 			return null;
@@ -36,8 +41,12 @@ final class SaluteRepository implements InitializableInterface
 
 		$entries = $this->data[$category]['entries'];
 		[$itemId] = $this->randomizer->pickArrayKeys($entries, 1);
+		$entry = $entries[$itemId];
 
-		return $entries[$itemId];
+		return new SaluteEntity(
+			content: $entry['content'],
+			withGif: $entry['withGif']
+		);
 	}
 
 	public function getGifTagForCategory(string $category): ?string

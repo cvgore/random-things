@@ -9,4 +9,4 @@ format:
 
 prod-cache-clear:
 	rm var/tmp/CompiledContainer.php
-	echo "cache cleared"
+	@echo "cache cleared"

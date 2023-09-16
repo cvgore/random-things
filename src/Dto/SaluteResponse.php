@@ -8,7 +8,7 @@ final readonly class SaluteResponse
 {
 	public function __construct(
 		public string $salute,
-		public string $gifUrl,
+		public ?string $gifUrl,
 	) {
 	}
 }
