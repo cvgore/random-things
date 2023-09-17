@@ -30,6 +30,6 @@ final readonly class CurrentDateProvider
 		$month = (int) $today->format('n');
 		$year = $today->format('Y');
 
-		return sprintf('%s %s %s', $day, self::NAME_OF_MONTHS_GENITIVE[$month], $year);
+		return sprintf('%s %s %s', $day, self::NAME_OF_MONTHS_GENITIVE[$month - 1], $year);
 	}
 }
