@@ -6,7 +6,7 @@ namespace Cvgore\RandomThings\Repository\External;
 
 interface GifRepositoryInterface
 {
-    public function getRandomGifForQuery(string $query): ?string;
-    
-    public function getDefaultGif(): string;
+	public function getRandomGifForQuery(string $query): ?string;
+
+	public function getDefaultGif(): string;
 }

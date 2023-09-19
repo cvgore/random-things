@@ -16,11 +16,11 @@ final readonly class TenorGifRepository implements GifRepositoryInterface
 	private string $apiKey;
 
 	#[Inject(name: 'tenor_gif.client_key')]
-	private string $clientKey;	
+	private string $clientKey;
 
 	#[Inject(name: 'tenor_gif.default_gif_url')]
 	private string $defaultGifUrl;
-	
+
 	#[Inject(name: 'tenor_gif.country')]
 	private string $country;
 
