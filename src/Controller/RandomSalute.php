@@ -6,7 +6,7 @@ namespace Cvgore\RandomThings\Controller;
 
 use Cvgore\RandomThings\Dto\RandomSaluteRequest;
 use Cvgore\RandomThings\Dto\SaluteResponse;
-use Cvgore\RandomThings\Repository\External\GiphyRepository;
+use Cvgore\RandomThings\Repository\GifChainRepository;
 use Cvgore\RandomThings\Repository\SaluteRepository;
 use DI\Attribute\Inject;
 use Psr\Http\Message\ResponseInterface as Response;
@@ -19,7 +19,7 @@ final readonly class RandomSalute implements ControllerInterface
 	private SerializerInterface $serializer;
 
 	#[Inject]
-	private GiphyRepository $giphyRepository;
+	private GifChainRepository $gifChainRepository;
 
 	#[Inject]
 	private SaluteRepository $saluteRepository;
@@ -44,9 +44,9 @@ final readonly class RandomSalute implements ControllerInterface
 			$gifTag = $this->saluteRepository->getGifTagForCategory($data->category);
 
 			if ($data->category === 'test') {
-				$gifUrl = $this->giphyRepository->getDefaultGif();
+				$gifUrl = $this->gifChainRepository->getDefaultGif();
 			} else {
-				$gifUrl = $this->giphyRepository->getRandomGifForTag($gifTag);
+				$gifUrl = $this->gifChainRepository->getRandomGifForQuery($gifTag);
 			}
 		}
 

@@ -61,7 +61,7 @@ final readonly class HttpClient
 		foreach ($headers as $headerValue) {
 			$headerValue = trim($headerValue);
 
-			if ($headerValue === $value) {
+			if (str_contains($headerValue, $value)) {
 				return true;
 			}
 		}

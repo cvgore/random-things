@@ -6,7 +6,7 @@ namespace Cvgore\RandomThings\Controller;
 
 use Cvgore\RandomThings\Dto\SaluteResponse;
 use Cvgore\RandomThings\Generator\MorningSaluteGenerator;
-use Cvgore\RandomThings\Repository\External\GiphyRepository;
+use Cvgore\RandomThings\Repository\GifChainRepository;
 use DI\Attribute\Inject;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
@@ -19,7 +19,7 @@ final readonly class MorningSalute implements ControllerInterface
 	private SerializerInterface $serializer;
 
 	#[Inject]
-	private GiphyRepository $giphyRepository;
+	private GifChainRepository $gifChainRepository;
 
 	#[Inject]
 	private MorningSaluteGenerator $morningSaluteGenerator;
@@ -35,7 +35,7 @@ final readonly class MorningSalute implements ControllerInterface
 	public function handle(Request $request, Response $response): Response
 	{
 		$salute = $this->morningSaluteGenerator->generate();
-		$gifUrl = $this->giphyRepository->getRandomGifForTag($this->gifTag);
+		$gifUrl = $this->gifChainRepository->getRandomGifForQuery($this->gifTag);
 
 		$body = new SaluteResponse(salute: $salute, gifUrl: $gifUrl);
 

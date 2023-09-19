@@ -1,3 +1,4 @@
-Bambolełoooooo - dzień @today. Imieniny @nameDays.
-Dzisiejsza prognoza pogody - @weatherPrediction.
+Bambolełoooooo - dzień @today.
+Imieniny @nameDays.
+@weatherPrediction.
 Gif z kotkiem xd na koniec.

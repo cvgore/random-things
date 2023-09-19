@@ -10,6 +10,9 @@ return [
 
     'morning_salute.gif_tag' => 'cat xd',
     'giphy.default_gif_url' => 'https://giphy.com/embed/sgxdxAK44EXcI',
+    'tenor_gif.default_gif_url' => 'https://tenor.com/bCZNb.gif',
+    'tenor_gif.locale' => 'pl',
+    'tenor_gif.country' => 'PL',
 
     'path.root' => __DIR__ . '/../',
 
@@ -31,6 +34,11 @@ return [
         DI\autowire(\Cvgore\RandomThings\Controller\RandomSalute::class),
         DI\autowire(\Cvgore\RandomThings\Controller\NextEaster::class),
         DI\autowire(\Cvgore\RandomThings\Controller\MorningSalute::class),
+    ],
+
+    'gif_chain_repositories' => [
+        DI\autowire(\Cvgore\RandomThings\Repository\External\GiphyRepository::class),
+        DI\autowire(\Cvgore\RandomThings\Repository\External\TenorGifRepository::class),
     ],
 
     \Symfony\Component\Serializer\SerializerInterface::class =>
@@ -59,6 +67,8 @@ return [
     \Cvgore\RandomThings\Translator\WeatherSymbolTranslator::class => DI\autowire()->method('init'),
 
     \Cvgore\RandomThings\Repository\External\GiphyRepository::class => DI\autowire(),
+    \Cvgore\RandomThings\Repository\External\TenorGifRepository::class => DI\autowire(),
     \Cvgore\RandomThings\Repository\External\NameDaysRepository::class => DI\autowire(),
     \Cvgore\RandomThings\Repository\External\WeatherForecastRepository::class => DI\autowire(),
+    \Cvgore\RandomThings\Repository\GifChainRepository::class => DI\autowire(),
 ];

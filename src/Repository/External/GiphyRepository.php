@@ -7,7 +7,7 @@ namespace Cvgore\RandomThings\Repository\External;
 use Cvgore\RandomThings\Http\HttpClient;
 use DI\Attribute\Inject;
 
-final readonly class GiphyRepository
+final readonly class GiphyRepository implements GifRepositoryInterface
 {
 	#[Inject(name: 'giphy.url')]
 	private string $baseUrl;
@@ -21,11 +21,11 @@ final readonly class GiphyRepository
 	#[Inject]
 	private HttpClient $client;
 
-	public function getRandomGifForTag(string $tag): ?string
+	public function getRandomGifForQuery(string $query): ?string
 	{
 		$body = $this->client->get("{$this->baseUrl}/v1/gifs/random", [
 			'api_key' => $this->apiKey,
-			'tag' => $tag,
+			'tag' => $query,
 		]);
 
 		if ($body === null) {
