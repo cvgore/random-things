@@ -53,7 +53,7 @@ final readonly class Kernel
 	private function runConfigurators(): void
 	{
 		/** @var ConfiguratorInterface[] $configurators */
-		$configurators = $this->container->get('configurators');
+		$configurators = $this->container->get('#configurators');
 
 		foreach ($configurators as $configurator) {
 			$configurator->configure();

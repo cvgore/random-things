@@ -8,7 +8,9 @@ use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 
 /**
- * @method Response handle(Request $request, Response $response, mixed $data)
+ * @template T
+ *
+ * @method Response handle(Request $request, Response $response, T $data)
  */
 interface ControllerInterface
 {

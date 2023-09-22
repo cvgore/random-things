@@ -8,7 +8,6 @@ use Cvgore\RandomThings\Dto\SaluteEntity;
 use Cvgore\RandomThings\Generator\PathGenerator;
 use DI\Attribute\Inject;
 use Random\Randomizer;
-use Symfony\Component\Serializer\SerializerInterface;
 use Zend\Stdlib\InitializableInterface;
 
 final class SaluteRepository implements InitializableInterface
@@ -19,15 +18,14 @@ final class SaluteRepository implements InitializableInterface
 	#[Inject]
 	private readonly PathGenerator $pathGenerator;
 
-	#[Inject]
-	private readonly SerializerInterface $serializer;
-
 	private array $data;
 
 	public function init(): void
 	{
 		$this->data = json_decode(
-			json: file_get_contents($this->pathGenerator->getResourcePath('salute.json')),
+			json: file_get_contents(
+				$this->pathGenerator->getResourcePath('salute-pl.json')
+			),
 			associative: true,
 			flags: JSON_THROW_ON_ERROR
 		);
@@ -40,10 +38,9 @@ final class SaluteRepository implements InitializableInterface
 		}
 
 		$entries = $this->data[$category]['entries'];
-		[$itemId] = $this->randomizer->pickArrayKeys($entries, 1);
-		$entry = $entries[$itemId];
+		[$item] = $this->randomizer->shuffleArray($entries);
 
-		return new SaluteEntity(content: $entry['content'], withGif: $entry['withGif']);
+		return new SaluteEntity(content: $item['content'], withGif: $item['withGif']);
 	}
 
 	public function getGifTagForCategory(string $category): ?string

@@ -8,9 +8,9 @@ final readonly class WeatherForecast
 {
 	public function __construct(
 		public string $briefDescription,
-		public string $symbolCode,
 		public float $temperature,
-		public float $windSpeed
+		public float $windSpeed,
+		public string $windSpeedDescription,
 	) {
 	}
 }

@@ -6,13 +6,16 @@ namespace Cvgore\RandomThings\Controller;
 
 use Cvgore\RandomThings\Dto\RandomSaluteRequest;
 use Cvgore\RandomThings\Dto\SaluteResponse;
-use Cvgore\RandomThings\Repository\GifChainRepository;
+use Cvgore\RandomThings\Repository\External\GifChainRepository;
 use Cvgore\RandomThings\Repository\SaluteRepository;
 use DI\Attribute\Inject;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Symfony\Component\Serializer\SerializerInterface;
 
+/**
+ * @implements ControllerInterface<RandomSaluteRequest>
+ */
 final readonly class RandomSalute implements ControllerInterface
 {
 	#[Inject]
@@ -29,9 +32,14 @@ final readonly class RandomSalute implements ControllerInterface
 		return '/v1/salute/random';
 	}
 
-	public function handle(Request $request, Response $response, RandomSaluteRequest $data): Response
-	{
-		$salute = $this->saluteRepository->getRandomSaluteForCategory($data->category);
+	public function handle(
+		Request $request,
+		Response $response,
+		RandomSaluteRequest $data
+	): Response {
+		$salute = $this->saluteRepository->getRandomSaluteForCategory(
+			$data->category
+		);
 
 		if ($salute === null) {
 			return $response
@@ -43,7 +51,7 @@ final readonly class RandomSalute implements ControllerInterface
 		if ($salute->withGif) {
 			$gifTag = $this->saluteRepository->getGifTagForCategory($data->category);
 
-			if ($data->category === 'test') {
+			if ($data->category === 'test' || $gifTag === null) {
 				$gifUrl = $this->gifChainRepository->getDefaultGif();
 			} else {
 				$gifUrl = $this->gifChainRepository->getRandomGifForQuery($gifTag);

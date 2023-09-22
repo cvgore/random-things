@@ -14,7 +14,7 @@ final readonly class Router implements ConfiguratorInterface
 	#[Inject]
 	private App $app;
 
-	#[Inject(name: 'controllers')]
+	#[Inject(name: '#controllers')]
 	private array $controllers;
 
 	public function configure(): void
@@ -26,7 +26,10 @@ final readonly class Router implements ConfiguratorInterface
 
 		/** @var ControllerInterface $controller */
 		foreach ($this->controllers as $controller) {
-			$this->app->get($controller->getRoutePattern(), $controller::class . ':handle');
+			$this->app->get(
+				$controller->getRoutePattern(),
+				$controller::class . ':handle'
+			);
 		}
 	}
 }

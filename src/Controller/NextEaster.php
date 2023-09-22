@@ -12,6 +12,9 @@ use Psr\Http\Message\ServerRequestInterface as Request;
 
 use Symfony\Component\Serializer\SerializerInterface;
 
+/**
+ * @implements ControllerInterface<void>
+ */
 final readonly class NextEaster implements ControllerInterface
 {
 	#[Inject]
@@ -27,7 +30,9 @@ final readonly class NextEaster implements ControllerInterface
 
 	public function handle(Request $request, Response $response): Response
 	{
-		$body = new NextEasterResponse(nextEasterAt: $this->nextEasterCalculator->calculate());
+		$body = new NextEasterResponse(
+			nextEasterAt: $this->nextEasterCalculator->calculate()
+		);
 
 		$response->getBody()
 			->write($this->serializer->serialize($body, 'json'));

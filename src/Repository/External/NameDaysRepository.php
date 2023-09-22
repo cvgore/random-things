@@ -6,11 +6,24 @@ namespace Cvgore\RandomThings\Repository\External;
 
 use Cvgore\RandomThings\Http\HttpClient;
 use DI\Attribute\Inject;
+use Random\Randomizer;
 
 final readonly class NameDaysRepository
 {
 	#[Inject(name: 'namedays.url')]
 	private string $baseUrl;
+
+	#[Inject(name: 'namedays.limit')]
+	private int $namesLimit;
+
+	#[Inject(name: 'namedays.country')]
+	private string $country;
+
+	#[Inject(name: 'namedays.timezone')]
+	private string $timezone;
+
+	#[Inject]
+	private Randomizer $randomizer;
 
 	#[Inject]
 	private HttpClient $client;
@@ -18,13 +31,13 @@ final readonly class NameDaysRepository
 	/**
 	 * @return string[]
 	 */
-	public function getNameDaysForToday(): array
+	public function getRandomNameDaysForToday(): array
 	{
 		$body = $this->client->get(
 			"{$this->baseUrl}/api/V1/today",
 			[
-				'country' => 'pl',
-				'timezone' => 'Europe/Warsaw',
+				'country' => $this->country,
+				'timezone' => $this->timezone,
 			]
 		);
 
@@ -45,6 +58,9 @@ final readonly class NameDaysRepository
 			return [];
 		}
 
-		return explode(',', $line);
+		$entries = explode(',', $line);
+		$entries = $this->randomizer->shuffleArray($entries);
+
+		return array_slice($entries, 0, $this->namesLimit);
 	}
 }

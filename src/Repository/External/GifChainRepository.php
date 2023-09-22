@@ -2,9 +2,8 @@
 
 declare(strict_types=1);
 
-namespace Cvgore\RandomThings\Repository;
+namespace Cvgore\RandomThings\Repository\External;
 
-use Cvgore\RandomThings\Repository\External\GifRepositoryInterface;
 use DI\Attribute\Inject;
 use Random\Randomizer;
 
@@ -13,7 +12,7 @@ final readonly class GifChainRepository implements GifRepositoryInterface
 	/**
 	 * @var GifRepositoryInterface[]
 	 */
-	#[Inject(name: 'gif_chain_repositories')]
+	#[Inject(name: '#gif_chain_repositories')]
 	private array $repositories;
 
 	#[Inject]
@@ -33,8 +32,8 @@ final readonly class GifChainRepository implements GifRepositoryInterface
 
 	private function getRandomRepository(): GifRepositoryInterface
 	{
-		[$repositoryId] = $this->randomizer->pickArrayKeys($this->repositories, 1);
+		[$repository] = $this->randomizer->shuffleArray($this->repositories);
 
-		return $this->repositories[$repositoryId];
+		return $repository;
 	}
 }

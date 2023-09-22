@@ -19,8 +19,11 @@ class QueryStringEncoder implements EncoderInterface, DecoderInterface
 		return $format === 'querystring';
 	}
 
-	public function decode(string $data, string $format, array $context = []): array
-	{
+	public function decode(
+		string $data,
+		string $format,
+		array $context = []
+	): array {
 		parse_str($data, $output);
 
 		return $output;

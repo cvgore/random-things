@@ -15,4 +15,7 @@ return static function (ECSConfig $ecsConfig): void {
 
     // end of line [default: PHP_EOL]; other options: "\n"
     $ecsConfig->lineEnding("\n");
+    $ecsConfig->ruleWithConfiguration(\Symplify\CodingStandard\Fixer\LineLength\LineLengthFixer::class, [
+        \Symplify\CodingStandard\Fixer\LineLength\LineLengthFixer::LINE_LENGTH => 80,
+    ]);
 };

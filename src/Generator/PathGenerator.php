@@ -8,7 +8,7 @@ use DI\Attribute\Inject;
 
 final readonly class PathGenerator
 {
-	#[Inject(name: 'path.root')]
+	#[Inject(name: '#path.root')]
 	private string $rootDir;
 
 	public function getRootPath(string $path = null): string

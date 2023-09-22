@@ -22,14 +22,18 @@ final readonly class QueryParamsParser implements MiddlewareInterface
 
 	public function process(Request $request, RequestHandler $handler): Response
 	{
-		if ($request->getMethod() === 'GET' && count($request->getQueryParams()) !== 0) {
+		if ($request->getMethod() === 'GET' && count(
+			$request->getQueryParams()
+		) !== 0) {
 			$routeCtx = RouteContext::fromRequest($request);
+			assert($routeCtx->getRoute() !== null);
 			$controller = $routeCtx->getRoute()
 				->getCallable();
 
 			if ($controller instanceof Closure) {
 				return $handler->handle($request);
 			}
+			assert(is_string($controller));
 			$function = new \ReflectionMethod(...explode(':', $controller));
 
 			if ($function->getNumberOfParameters() === 3) {
@@ -43,7 +47,11 @@ final readonly class QueryParamsParser implements MiddlewareInterface
 				$type = $arg->getType();
 
 				if ($type instanceof ReflectionNamedType) {
-					$deserialized = $this->serializer->deserialize($contents, $type->getName(), 'querystring');
+					$deserialized = $this->serializer->deserialize(
+						$contents,
+						$type->getName(),
+						'querystring'
+					);
 
 					$request = $request
 						->withParsedBody($deserialized)

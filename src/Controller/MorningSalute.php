@@ -6,13 +6,15 @@ namespace Cvgore\RandomThings\Controller;
 
 use Cvgore\RandomThings\Dto\SaluteResponse;
 use Cvgore\RandomThings\Generator\MorningSaluteGenerator;
-use Cvgore\RandomThings\Repository\GifChainRepository;
+use Cvgore\RandomThings\Repository\External\GifChainRepository;
 use DI\Attribute\Inject;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
-
 use Symfony\Component\Serializer\SerializerInterface;
 
+/**
+ * @implements ControllerInterface<void>
+ */
 final readonly class MorningSalute implements ControllerInterface
 {
 	#[Inject]

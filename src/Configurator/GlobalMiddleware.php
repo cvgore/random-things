@@ -9,7 +9,7 @@ use Slim\App;
 
 final readonly class GlobalMiddleware implements ConfiguratorInterface
 {
-	#[Inject(name: 'global_middleware')]
+	#[Inject(name: '#global_middleware')]
 	private array $middleware;
 
 	#[Inject]

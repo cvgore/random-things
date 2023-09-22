@@ -2,41 +2,38 @@
 
 declare(strict_types=1);
 
-if (!defined('APP_CTX')) die;
+if (!defined('APP_DEFINE_GUARD')) die;
 
+// semantics
+// - #abc <- this is static, should not be altered by env file
+// - abc <- this is dynamic (parameter), will definitely be altered by env file
 return [
     'api_keys' => [],
     'show_errors' => false,
 
-    'morning_salute.gif_tag' => 'cat xd',
-    'giphy.default_gif_url' => 'https://giphy.com/embed/sgxdxAK44EXcI',
-    'tenor_gif.default_gif_url' => 'https://tenor.com/bCZNb.gif',
-    'tenor_gif.locale' => 'pl',
-    'tenor_gif.country' => 'PL',
+    '#path.root' => __DIR__ . '/../',
 
-    'path.root' => __DIR__ . '/../',
-
-    'configurators' => [
+    '#configurators' => [
         DI\autowire(\Cvgore\RandomThings\Configurator\GlobalMiddleware::class),
         DI\autowire(\Cvgore\RandomThings\Configurator\Router::class),
         DI\autowire(\Cvgore\RandomThings\Configurator\NotFoundFallbackRouter::class),
         DI\autowire(\Cvgore\RandomThings\Configurator\ErrorHandler::class),
     ],
 
-    'global_middleware' => [
+    '#global_middleware' => [
         DI\autowire(\Cvgore\RandomThings\Middleware\Cors::class),
         DI\autowire(\Cvgore\RandomThings\Middleware\ApiKey::class),
         DI\autowire(\Cvgore\RandomThings\Middleware\JsonBodyParser::class),
         DI\autowire(\Cvgore\RandomThings\Middleware\QueryParamsParser::class),
     ],
 
-    'controllers' => [
+    '#controllers' => [
         DI\autowire(\Cvgore\RandomThings\Controller\RandomSalute::class),
         DI\autowire(\Cvgore\RandomThings\Controller\NextEaster::class),
         DI\autowire(\Cvgore\RandomThings\Controller\MorningSalute::class),
     ],
 
-    'gif_chain_repositories' => [
+    '#gif_chain_repositories' => [
         DI\autowire(\Cvgore\RandomThings\Repository\External\GiphyRepository::class),
         DI\autowire(\Cvgore\RandomThings\Repository\External\TenorGifRepository::class),
     ],
@@ -60,15 +57,20 @@ return [
             ]),
 
     \Cvgore\RandomThings\Provider\CurrentDateProvider::class => DI\autowire(),
+    \Cvgore\RandomThings\Formatter\NewsFormatter::class => DI\autowire(),
+    \Cvgore\RandomThings\Formatter\WeatherPredictionsFormatter::class => DI\autowire(),
     \Cvgore\RandomThings\Repository\SaluteRepository::class => DI\autowire()->method('init'),
     \Cvgore\RandomThings\Http\HttpClient::class => DI\autowire(),
     \Cvgore\RandomThings\Generator\MorningSaluteGenerator::class => DI\autowire(),
     \Random\Randomizer::class => DI\autowire(),
-    \Cvgore\RandomThings\Translator\WeatherSymbolTranslator::class => DI\autowire()->method('init'),
+    \Cvgore\RandomThings\Translator\WindSpeedTranslator::class => DI\autowire(),
+    \Cvgore\RandomThings\Translator\Translator::class => DI\autowire()->method('init'),
 
     \Cvgore\RandomThings\Repository\External\GiphyRepository::class => DI\autowire(),
     \Cvgore\RandomThings\Repository\External\TenorGifRepository::class => DI\autowire(),
     \Cvgore\RandomThings\Repository\External\NameDaysRepository::class => DI\autowire(),
     \Cvgore\RandomThings\Repository\External\WeatherForecastRepository::class => DI\autowire(),
-    \Cvgore\RandomThings\Repository\GifChainRepository::class => DI\autowire(),
+    \Cvgore\RandomThings\Repository\External\MultipleWeatherForecastRepository::class => DI\autowire(),
+    \Cvgore\RandomThings\Repository\External\GifChainRepository::class => DI\autowire(),
+    \Cvgore\RandomThings\Repository\External\NewsRepository::class => DI\autowire(),
 ];

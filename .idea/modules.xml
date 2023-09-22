@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$USER_HOME$/Library/Caches/JetBrains/Fleet/backend/1f665vag8bbpegir1qh0/projects/random-things.3c0f8903/external_build_system/modules/random-things.iml" filepath="$USER_HOME$/Library/Caches/JetBrains/Fleet/backend/1f665vag8bbpegir1qh0/projects/random-things.3c0f8903/external_build_system/modules/random-things.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/random-things.iml" filepath="$PROJECT_DIR$/.idea/random-things.iml" />
     </modules>
   </component>
 </project>

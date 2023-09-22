@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Cvgore\RandomThings\Middleware;
 
+use Closure;
 use DI\Attribute\Inject;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
@@ -25,8 +26,14 @@ final readonly class JsonBodyParser implements MiddlewareInterface
 
 		if ($request->getMethod() === 'POST' && $contentType === 'application/json') {
 			$routeCtx = RouteContext::fromRequest($request);
+			assert($routeCtx->getRoute() !== null);
 			$controller = $routeCtx->getRoute()
 				->getCallable();
+
+			if ($controller instanceof Closure) {
+				return $handler->handle($request);
+			}
+			assert(is_string($controller));
 			$function = new \ReflectionMethod(...explode(':', $controller));
 
 			if ($function->getNumberOfParameters() === 3) {
@@ -39,7 +46,11 @@ final readonly class JsonBodyParser implements MiddlewareInterface
 				$type = $arg->getType();
 
 				if ($type instanceof ReflectionNamedType) {
-					$deserialized = $this->serializer->deserialize($contents, $type->getName(), 'json');
+					$deserialized = $this->serializer->deserialize(
+						$contents,
+						$type->getName(),
+						'json'
+					);
 
 					$request = $request
 						->withParsedBody($deserialized)
