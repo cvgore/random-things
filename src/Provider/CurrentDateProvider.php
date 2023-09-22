@@ -23,7 +23,7 @@ final readonly class CurrentDateProvider
 		return sprintf(
 			'%s %s %s',
 			$day,
-			$this->translator->translate("month.genitive.{$month}"),
+			$this->translator->translate("months.genitive.{$month}"),
 			$year
 		);
 	}
