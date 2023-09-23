@@ -34,6 +34,7 @@ return [
     'news_api.domain_priority' => 'medium',
     'news_api.category' => 'top',
     'news_api.language' => 'pl',
+    'news_api.query' => '',
     'news_api.limit' => 4,
 
     'weather_api.url' => 'https://api.met.no',

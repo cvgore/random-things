@@ -32,6 +32,9 @@ final readonly class NewsRepository
 	#[Inject(name: 'news_api.limit')]
 	private int $newsLimit;
 
+    #[Inject(name: 'news_api.query')]
+    private string $query;
+
 	#[Inject]
 	private Randomizer $randomizer;
 
@@ -49,6 +52,7 @@ final readonly class NewsRepository
 			'category' => $this->category,
 			'prioritydomain' => $this->domainPriority,
 			'domainurl' => $this->domainsWhitelist,
+            'q' => $this->query,
 		]);
 
 		if ($body === null) {
