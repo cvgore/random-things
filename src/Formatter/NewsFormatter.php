@@ -25,7 +25,7 @@ final readonly class NewsFormatter
 		$news = array_filter($news);
 
 		$news = array_map($this->formatSingle(...), $news);
-		return implode('\n', $news);
+		return implode("\n", $news);
 	}
 
 	private function formatSingle(News $news): string

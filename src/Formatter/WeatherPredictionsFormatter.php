@@ -29,7 +29,7 @@ final readonly class WeatherPredictionsFormatter
 			array_keys($forecasts),
 			$forecasts
 		);
-		return implode('\n', $result);
+		return implode("\n", $result);
 	}
 
 	private function formatSingle(string $name, WeatherForecast $forecast): string
