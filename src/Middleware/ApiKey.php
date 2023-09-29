@@ -13,6 +13,8 @@ use Slim\Exception\HttpUnauthorizedException;
 
 final readonly class ApiKey implements MiddlewareInterface
 {
+	private const AUTH_HEADER_PREFIX = 'Bearer ';
+
 	/**
 	 * @var string[] $apiKeys
 	 */
@@ -29,13 +31,12 @@ final readonly class ApiKey implements MiddlewareInterface
 
 		// preserve only first header
 		$header = $header[0];
-		if (! str_starts_with($header, 'Bearer ')) {
+		if (! str_starts_with($header, self::AUTH_HEADER_PREFIX)) {
 			throw new HttpUnauthorizedException($request);
 		}
-		// get rid of `Bearer ` prefix
-		$header = substr($header, 7);
+		$token = mb_substr($header, mb_strlen(self::AUTH_HEADER_PREFIX));
 
-		if (! $this->verifyApiKey($header)) {
+		if (! $this->verifyApiKey($token)) {
 			throw new HttpUnauthorizedException($request);
 		}
 
