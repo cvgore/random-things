@@ -40,5 +40,7 @@ return [
     'weather_api.url' => 'https://api.met.no',
     'weather_api.throttle_ms' => 500,
     'weather_api.locations' => [
-    ]
+    ],
+
+    'fancy_font.family.fire.max_len' => 40,
 ];

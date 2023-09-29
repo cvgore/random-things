@@ -21,6 +21,12 @@
         <function name="print_r" />
         <function name="echo" />
         <function name="print" />
+
+        <!-- multibyte only functions -->
+        <function name="str_split" />
+        <function name="strlen" />
+        <function name="strtolower" />
+        <function name="substr" />
     </forbiddenFunctions>
     <issueHandlers>
         <PossiblyUnusedProperty>

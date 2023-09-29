@@ -25,6 +25,8 @@ final readonly class ErrorHandler implements ConfiguratorInterface
 		ini_set('display_startup_errors', $showErrors);
 		ini_set('expose_php', false);
 
-		$this->app->addErrorMiddleware($showErrors, true, true);
+		$this->app
+			->addErrorMiddleware($showErrors, true, true)
+		;
 	}
 }

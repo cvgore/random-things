@@ -31,12 +31,16 @@ return [
         DI\autowire(\Cvgore\RandomThings\Controller\RandomSalute::class),
         DI\autowire(\Cvgore\RandomThings\Controller\NextEaster::class),
         DI\autowire(\Cvgore\RandomThings\Controller\MorningSalute::class),
+        DI\autowire(\Cvgore\RandomThings\Controller\FireFancyText::class)
     ],
 
     '#gif_chain_repositories' => [
         DI\autowire(\Cvgore\RandomThings\Repository\External\GiphyRepository::class),
         DI\autowire(\Cvgore\RandomThings\Repository\External\TenorGifRepository::class),
     ],
+
+    '#fancy_font.generator.fire' => DI\autowire(\Cvgore\RandomThings\Generator\FancyFontGenerator::class)
+        ->constructor(DI\get(\Cvgore\RandomThings\FancyFont\FireFancyFontFamily::class)),
 
     \Symfony\Component\Serializer\SerializerInterface::class =>
         DI\autowire(\Symfony\Component\Serializer\Serializer::class)
@@ -65,6 +69,9 @@ return [
     \Random\Randomizer::class => DI\autowire(),
     \Cvgore\RandomThings\Translator\WindSpeedTranslator::class => DI\autowire(),
     \Cvgore\RandomThings\Translator\Translator::class => DI\autowire()->method('init'),
+    \Cvgore\RandomThings\Generator\FancyFontGenerator::class => DI\autowire(),
+    \Cvgore\RandomThings\FancyFont\FireFancyFontFamily::class => DI\autowire(),
+
 
     \Cvgore\RandomThings\Repository\External\GiphyRepository::class => DI\autowire(),
     \Cvgore\RandomThings\Repository\External\TenorGifRepository::class => DI\autowire(),
