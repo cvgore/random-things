@@ -21,7 +21,7 @@ final readonly class NewsRepository
 	private string $domainsWhitelist;
 
 	#[Inject(name: 'news_api.domain_priority')]
-	private string $domainPriority;
+	private ?string $domainPriority;
 
 	#[Inject(name: 'news_api.category')]
 	private string $category;
@@ -46,14 +46,14 @@ final readonly class NewsRepository
 	 */
 	public function getRandomTopNews(): array
 	{
-		$body = $this->client->get("{$this->baseUrl}/api/1/news", [
+		$body = $this->client->get("{$this->baseUrl}/api/1/news", array_filter([
 			'apikey' => $this->apiKey,
 			'language' => $this->language,
 			'category' => $this->category,
 			'prioritydomain' => $this->domainPriority,
 			'domainurl' => $this->domainsWhitelist,
 			'q' => $this->query,
-		]);
+		], is_scalar(...)));
 
 		if ($body === null) {
 			return [];

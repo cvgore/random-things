@@ -71,7 +71,7 @@ abstract readonly class FancyFontFamily
 		if (array_key_exists($symbol, self::CHAR_TO_FILENAME_MAP)) {
 			$filename = self::CHAR_TO_FILENAME_MAP[$symbol];
 		} else {
-            $symbolLowerCase = mb_strtolower($symbol);
+			$symbolLowerCase = mb_strtolower($symbol);
 			$filename = $symbolLowerCase === $symbol
 				? "{$symbolLowerCase}l"
 				: "{$symbolLowerCase}u";
