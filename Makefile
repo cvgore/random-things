@@ -1,3 +1,5 @@
+.PHONY: composer build run-dev psalm format prod-cache-clear
+
 composer:
 	docker run -it --rm -v "${PWD}":/app -w /app composer --ignore-platform-reqs $(args)
 

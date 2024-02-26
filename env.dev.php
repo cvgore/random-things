@@ -43,4 +43,16 @@ return [
     ],
 
     'fancy_font.family.fire.max_len' => 40,
+
+    'eprescription.item_name.max_len' => 36,
+    'eprescription.issued_by.max_len' => 28,
+    'eprescription.patient_name.max_len' => 28,
+    'eprescription.dose_text.max_len' => 45,
+    'eprescription.code.length' => 4,
+    'eprescription.issued_by.default_value' => 'Apteka Max Pain',
+    'eprescription.dose_text.default_value' => '1 op. po 6 tabl.',
+
+//    \Cvgore\RandomThings\Validation\Validate::class => [
+//
+//    ]
 ];
