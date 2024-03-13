@@ -1,4 +1,5 @@
 ## 🅱️ambolełoooooo @today
+Dziś jest dzień @dayOf
 Imieniny @nameDays.
 Pogoda:
 @weatherPredictions.

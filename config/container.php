@@ -34,6 +34,7 @@ return [
         DI\autowire(\Cvgore\RandomThings\Controller\FireFancyText::class),
         DI\autowire(\Cvgore\RandomThings\Controller\EPrescription::class),
         DI\autowire(\Cvgore\RandomThings\Controller\RandomYoutubeVideo::class),
+        DI\autowire(\Cvgore\RandomThings\Controller\CalendarDay::class),
     ],
 
     '#gif_chain_repositories' => [
@@ -84,4 +85,5 @@ return [
     \Cvgore\RandomThings\Repository\External\NewsRepository::class => DI\autowire(),
     \Cvgore\RandomThings\Generator\EPrescriptionGenerator::class => DI\autowire(),
     \Cvgore\RandomThings\Repository\External\YoutubeVideosRepository::class => DI\autowire(),
+    \Cvgore\RandomThings\Repository\External\CalendarRepository::class => DI\autowire(),
 ];

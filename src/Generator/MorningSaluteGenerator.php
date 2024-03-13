@@ -7,6 +7,7 @@ namespace Cvgore\RandomThings\Generator;
 use Cvgore\RandomThings\Formatter\NewsFormatter;
 use Cvgore\RandomThings\Formatter\WeatherPredictionsFormatter;
 use Cvgore\RandomThings\Provider\CurrentDateProvider;
+use Cvgore\RandomThings\Repository\External\CalendarRepository;
 use Cvgore\RandomThings\Repository\External\MultipleWeatherForecastRepository;
 use Cvgore\RandomThings\Repository\External\NameDaysRepository;
 use Cvgore\RandomThings\Repository\External\NewsRepository;
@@ -41,7 +42,7 @@ final readonly class MorningSaluteGenerator
 	private Translator $translator;
 
     #[Inject]
-    private YoutubeVideosRepository $youtubeVideosRepository;
+    private CalendarRepository $calendarRepository;
 
 	public function generate(): string
 	{
@@ -64,13 +65,17 @@ final readonly class MorningSaluteGenerator
 		$news = $this->newsRepository->getRandomTopNews();
 		$news = $this->newsFormatter->format($news);
 
+        $dayOf = $this->calendarRepository->getRandomCalendarDay()
+            ?? $this->translator->translate('calendar.no-data');
+
 		return str_replace(
-			['@today', '@nameDays', '@weatherPredictions', '@news'],
+			['@today', '@nameDays', '@weatherPredictions', '@news', '@dayOf'],
 			[
 				$this->currentDateProvider->todayLong(),
 				$nameDays,
 				$weatherPredictions,
 				$news,
+                $dayOf,
 			],
 			$template
 		);
