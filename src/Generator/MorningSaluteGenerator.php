@@ -10,6 +10,7 @@ use Cvgore\RandomThings\Provider\CurrentDateProvider;
 use Cvgore\RandomThings\Repository\External\MultipleWeatherForecastRepository;
 use Cvgore\RandomThings\Repository\External\NameDaysRepository;
 use Cvgore\RandomThings\Repository\External\NewsRepository;
+use Cvgore\RandomThings\Repository\External\YoutubeVideosRepository;
 use Cvgore\RandomThings\Translator\Translator;
 use DI\Attribute\Inject;
 
@@ -38,6 +39,9 @@ final readonly class MorningSaluteGenerator
 
 	#[Inject]
 	private Translator $translator;
+
+    #[Inject]
+    private YoutubeVideosRepository $youtubeVideosRepository;
 
 	public function generate(): string
 	{

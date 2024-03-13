@@ -52,6 +52,9 @@ return [
     'eprescription.issued_by.default_value' => 'Apteka Max Pain',
     'eprescription.dose_text.default_value' => '1 op. po 6 tabl.',
 
+    'random_yt_movie.url' => 'https://raw.githubusercontent.com/polskie-mapy/data/master/data.json',
+    'random_yt_movie.tries' => 5,
+
 //    \Cvgore\RandomThings\Validation\Validate::class => [
 //
 //    ]

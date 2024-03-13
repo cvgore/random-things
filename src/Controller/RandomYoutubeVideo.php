@@ -4,9 +4,7 @@ declare(strict_types=1);
 
 namespace Cvgore\RandomThings\Controller;
 
-use Cvgore\RandomThings\Dto\SaluteResponse;
-use Cvgore\RandomThings\Generator\MorningSaluteGenerator;
-use Cvgore\RandomThings\Repository\External\GifChainRepository;
+use Cvgore\RandomThings\Dto\RandomYoutubeVideoResponse;
 use Cvgore\RandomThings\Repository\External\YoutubeVideosRepository;
 use DI\Attribute\Inject;
 use Psr\Http\Message\ResponseInterface as Response;
@@ -16,28 +14,31 @@ use Symfony\Component\Serializer\SerializerInterface;
 /**
  * @implements ControllerInterface<void>
  */
-final readonly class MorningSalute implements ControllerInterface
+final readonly class RandomYoutubeVideo implements ControllerInterface
 {
 	#[Inject]
 	private SerializerInterface $serializer;
 
 	#[Inject]
-	private MorningSaluteGenerator $morningSaluteGenerator;
-
-    #[Inject]
-    private YoutubeVideosRepository $youtubeVideosRepository;
+	private YoutubeVideosRepository $youtubeVideosRepository;
 
 	public function getRoutePattern(): string
 	{
-		return '/v1/salute/morning';
+		return '/v1/youtube/random';
 	}
 
-	public function handle(Request $request, Response $response): Response
-	{
-		$salute = $this->morningSaluteGenerator->generate();
-		$gifUrl = $this->youtubeVideosRepository->getRandomVideoUrl();
+	public function handle(
+		Request $request,
+		Response $response
+	): Response {
+		$url = $this->youtubeVideosRepository->getRandomVideoUrl();
 
-		$body = new SaluteResponse(salute: $salute, gifUrl: $gifUrl);
+		if ($url === null) {
+			return $response
+				->withStatus(404);
+		}
+
+		$body = new RandomYoutubeVideoResponse(videoUrl: $url);
 
 		$response->getBody()
 			->write($this->serializer->serialize($body, 'json'));

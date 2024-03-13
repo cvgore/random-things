@@ -33,6 +33,7 @@ return [
         DI\autowire(\Cvgore\RandomThings\Controller\MorningSalute::class),
         DI\autowire(\Cvgore\RandomThings\Controller\FireFancyText::class),
         DI\autowire(\Cvgore\RandomThings\Controller\EPrescription::class),
+        DI\autowire(\Cvgore\RandomThings\Controller\RandomYoutubeVideo::class),
     ],
 
     '#gif_chain_repositories' => [
@@ -82,4 +83,5 @@ return [
     \Cvgore\RandomThings\Repository\External\GifChainRepository::class => DI\autowire(),
     \Cvgore\RandomThings\Repository\External\NewsRepository::class => DI\autowire(),
     \Cvgore\RandomThings\Generator\EPrescriptionGenerator::class => DI\autowire(),
+    \Cvgore\RandomThings\Repository\External\YoutubeVideosRepository::class => DI\autowire(),
 ];

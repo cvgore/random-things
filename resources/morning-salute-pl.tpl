@@ -4,4 +4,4 @@ Pogoda:
 @weatherPredictions.
 Z ważnych rzeczy:
 @news
-Koteł na dobry dzionek 😼.
+🎥Losowy filmik z mapki internetów na dziś.

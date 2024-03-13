@@ -41,15 +41,6 @@ final readonly class HttpClient
 			$response = $this->client->request('GET', $url, [
 				RequestOptions::QUERY => $query,
 			]);
-			$hasExpectedContentType = $this->hasHeader(
-				$response,
-				self::HEADER_CONTENT_TYPE,
-				self::HEADER_VALUE_JSON
-			);
-
-			if (! $hasExpectedContentType) {
-				return null;
-			}
 
 			return json_decode(
 				json: (string) $response->getBody(),
@@ -59,27 +50,5 @@ final readonly class HttpClient
 		} catch (RequestException|JsonException $ex) {
 			return null;
 		}
-	}
-
-	private function hasHeader(
-		ResponseInterface $response,
-		string $headerName,
-		string $value
-	): bool {
-		$headers = $response->getHeader(mb_strtolower($headerName));
-
-		if (count($headers) === 0) {
-			return false;
-		}
-
-		foreach ($headers as $headerValue) {
-			$headerValue = trim($headerValue);
-
-			if (str_contains($headerValue, $value)) {
-				return true;
-			}
-		}
-
-		return false;
 	}
 }
