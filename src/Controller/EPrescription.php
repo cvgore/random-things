@@ -9,6 +9,7 @@ use Cvgore\RandomThings\Exception\InvalidRequestInputValueException;
 use Cvgore\RandomThings\Exception\NotSupportedValueException;
 use Cvgore\RandomThings\Exception\PayloadTooLargeException;
 use Cvgore\RandomThings\Generator\EPrescriptionGenerator;
+use Cvgore\RandomThings\Routing\HttpMethod;
 use DI\Attribute\Inject;
 use GuzzleHttp\Psr7\Stream;
 use Psr\Http\Message\ResponseInterface as Response;
@@ -51,6 +52,11 @@ final readonly class EPrescription implements ControllerInterface
 	{
 		return '/v1/eprescription';
 	}
+
+    public function getRouteMethod(): HttpMethod
+    {
+        return HttpMethod::Get;
+    }
 
 	public function handle(
 		Request $request,

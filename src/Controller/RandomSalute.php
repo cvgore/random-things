@@ -8,6 +8,7 @@ use Cvgore\RandomThings\Dto\RandomSaluteRequest;
 use Cvgore\RandomThings\Dto\SaluteResponse;
 use Cvgore\RandomThings\Repository\External\GifChainRepository;
 use Cvgore\RandomThings\Repository\SaluteRepository;
+use Cvgore\RandomThings\Routing\HttpMethod;
 use DI\Attribute\Inject;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
@@ -31,6 +32,11 @@ final readonly class RandomSalute implements ControllerInterface
 	{
 		return '/v1/salute/random';
 	}
+
+    public function getRouteMethod(): HttpMethod
+    {
+        return HttpMethod::Get;
+    }
 
 	public function handle(
 		Request $request,

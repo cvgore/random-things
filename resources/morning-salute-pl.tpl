@@ -1,8 +1,8 @@
 ## 🅱️ambolełoooooo @today
-Dziś jest dzień @dayOf
-Imieniny @nameDays.
+🗓️ Dziś jest dzień: **@dayOf**
+🧑 Imieniny: @nameDays
 Pogoda:
-@weatherPredictions.
+@weatherPredictions
 Z ważnych rzeczy:
 @news
-🎥Losowy filmik z mapki internetów na dziś.
+🎥Losowy filmik z mapki internetów na dziś 🎥

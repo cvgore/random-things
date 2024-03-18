@@ -4,6 +4,7 @@ namespace Cvgore\RandomThings\Repository\External;
 
 use Cvgore\RandomThings\Http\HttpClient;
 use DI\Attribute\Inject;
+use Random\Engine\Xoshiro256StarStar;
 use Random\Randomizer;
 
 final class YoutubeVideosRepository
@@ -20,18 +21,20 @@ final class YoutubeVideosRepository
     #[Inject]
     private HttpClient $client;
 
-    #[Inject]
-    private Randomizer $random;
-
     public function getRandomVideoUrl(): ?string
     {
+        $randomizerEngine = new Xoshiro256StarStar(
+            (int)(new \DateTimeImmutable())->format('Ymd')
+        );
+        $random = new Randomizer($randomizerEngine);
+
         $mapsData = $this->client->get($this->baseUrl);
         assert(is_array($mapsData));
         assert(array_key_exists('points', $mapsData));
         assert(array_is_list($mapsData['points']));
 
         for ($_ = 0; $_ < $this->tries; $_++) {
-            [$key] = $this->random->pickArrayKeys($mapsData['points'], 1);
+            [$key] = $random->pickArrayKeys($mapsData['points'], 1);
 
             assert(is_array($mapsData['points'][$key]));
             assert(array_key_exists('links', $mapsData['points'][$key]));
@@ -52,7 +55,7 @@ final class YoutubeVideosRepository
         return null;
     }
 
-    private function isVideoOnline(string $url): bool
+    public function isVideoOnline(string $url): bool
     {
         return $this->client->get($this->ytUrl, [
             'url' => $url,

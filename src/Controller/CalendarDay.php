@@ -5,9 +5,8 @@ declare(strict_types=1);
 namespace Cvgore\RandomThings\Controller;
 
 use Cvgore\RandomThings\Dto\CalendarDayResponse;
-use Cvgore\RandomThings\Dto\RandomYoutubeVideoResponse;
 use Cvgore\RandomThings\Repository\External\CalendarRepository;
-use Cvgore\RandomThings\Repository\External\YoutubeVideosRepository;
+use Cvgore\RandomThings\Routing\HttpMethod;
 use DI\Attribute\Inject;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
@@ -29,7 +28,12 @@ final readonly class CalendarDay implements ControllerInterface
 		return '/v1/calendar/day';
 	}
 
-	public function handle(
+    public function getRouteMethod(): HttpMethod
+    {
+        return HttpMethod::Get;
+    }
+
+    public function handle(
 		Request $request,
 		Response $response
 	): Response {

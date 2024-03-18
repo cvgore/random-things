@@ -6,6 +6,7 @@ namespace Cvgore\RandomThings\Controller;
 
 use Cvgore\RandomThings\Calculator\NextEasterCalculator;
 use Cvgore\RandomThings\Dto\NextEasterResponse;
+use Cvgore\RandomThings\Routing\HttpMethod;
 use DI\Attribute\Inject;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
@@ -27,6 +28,11 @@ final readonly class NextEaster implements ControllerInterface
 	{
 		return '/v1/easter';
 	}
+
+    public function getRouteMethod(): HttpMethod
+    {
+        return HttpMethod::Get;
+    }
 
 	public function handle(Request $request, Response $response): Response
 	{

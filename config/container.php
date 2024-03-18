@@ -6,6 +6,7 @@ if (!defined('APP_DEFINE_GUARD')) die;
 
 // semantics
 // - #abc <- this is static, should not be altered by env file
+// - FQCN <- as above
 // - abc <- this is dynamic (parameter), will definitely be altered by env file
 return [
     'api_keys' => [],
@@ -69,12 +70,13 @@ return [
     \Cvgore\RandomThings\Repository\SaluteRepository::class => DI\autowire()->method('init'),
     \Cvgore\RandomThings\Http\HttpClient::class => DI\autowire(),
     \Cvgore\RandomThings\Generator\MorningSaluteGenerator::class => DI\autowire(),
-    \Random\Randomizer::class => DI\autowire(),
     \Cvgore\RandomThings\Translator\WindSpeedTranslator::class => DI\autowire(),
     \Cvgore\RandomThings\Translator\Translator::class => DI\autowire()->method('init'),
     \Cvgore\RandomThings\Generator\FancyFontGenerator::class => DI\autowire(),
     \Cvgore\RandomThings\FancyFont\FireFancyFontFamily::class => DI\autowire(),
 
+    \Random\Randomizer::class => DI\autowire()
+        ->constructorParameter('engine', new \Random\Engine\Secure()),
 
     \Cvgore\RandomThings\Repository\External\GiphyRepository::class => DI\autowire(),
     \Cvgore\RandomThings\Repository\External\TenorGifRepository::class => DI\autowire(),

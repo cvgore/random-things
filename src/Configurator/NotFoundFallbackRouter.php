@@ -16,8 +16,7 @@ final readonly class NotFoundFallbackRouter implements ConfiguratorInterface
 
 	public function configure(): void
 	{
-		$this->app->map(
-			['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
+		$this->app->any(
 			'/{routes:.+}',
 			function (Request $request) {
 				throw new HttpNotFoundException($request);
