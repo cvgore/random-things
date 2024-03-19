@@ -59,7 +59,7 @@ final readonly class NameDaysRepository
 		}
 
 		$entries = explode(',', $line);
-        $entries = array_map(trim(...), $entries);
+		$entries = array_map(trim(...), $entries);
 		$entries = $this->randomizer->shuffleArray($entries);
 
 		return array_slice($entries, 0, $this->namesLimit);

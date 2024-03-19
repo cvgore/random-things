@@ -29,10 +29,10 @@ final readonly class NextEaster implements ControllerInterface
 		return '/v1/easter';
 	}
 
-    public function getRouteMethod(): HttpMethod
-    {
-        return HttpMethod::Get;
-    }
+	public function getRouteMethod(): HttpMethod
+	{
+		return HttpMethod::Get;
+	}
 
 	public function handle(Request $request, Response $response): Response
 	{

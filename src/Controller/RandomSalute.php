@@ -33,10 +33,10 @@ final readonly class RandomSalute implements ControllerInterface
 		return '/v1/salute/random';
 	}
 
-    public function getRouteMethod(): HttpMethod
-    {
-        return HttpMethod::Get;
-    }
+	public function getRouteMethod(): HttpMethod
+	{
+		return HttpMethod::Get;
+	}
 
 	public function handle(
 		Request $request,

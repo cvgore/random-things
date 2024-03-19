@@ -8,10 +8,10 @@ final readonly class EPrescriptionRequest
 {
 	public function __construct(
 		public string  $patientName,
-        public string  $itemName,
-        public ?string $issuerName = null,
-        public ?string $doseText = null,
-        public ?string $code = null,
+		public string  $itemName,
+		public ?string $issuerName = null,
+		public ?string $doseText = null,
+		public ?string $code = null,
 	) {
 	}
 }

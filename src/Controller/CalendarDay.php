@@ -28,15 +28,13 @@ final readonly class CalendarDay implements ControllerInterface
 		return '/v1/calendar/day';
 	}
 
-    public function getRouteMethod(): HttpMethod
-    {
-        return HttpMethod::Get;
-    }
+	public function getRouteMethod(): HttpMethod
+	{
+		return HttpMethod::Get;
+	}
 
-    public function handle(
-		Request $request,
-		Response $response
-	): Response {
+	public function handle(Request $request, Response $response): Response
+	{
 		$name = $this->calendarRepository->getRandomCalendarDay();
 
 		if ($name === null) {

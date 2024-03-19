@@ -27,7 +27,7 @@ final readonly class Router implements ConfiguratorInterface
 		/** @var ControllerInterface $controller */
 		foreach ($this->controllers as $controller) {
 			$this->app->map(
-                [$controller->getRouteMethod()->value],
+				[$controller->getRouteMethod()->value],
 				$controller->getRoutePattern(),
 				$controller::class . ':handle'
 			);

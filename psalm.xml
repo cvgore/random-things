@@ -12,6 +12,7 @@
         <directory name="src" />
         <directory name="config" />
         <file name="public/index.php" />
+        <file name="cli.php" />
         <ignoreFiles>
             <directory name="vendor" />
         </ignoreFiles>

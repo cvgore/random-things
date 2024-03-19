@@ -12,7 +12,7 @@ return [
     'api_keys' => [],
     'show_errors' => false,
 
-    '#path.root' => __DIR__ . '/../',
+    '#path.root' => realpath(__DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR),
 
     '#configurators' => [
         DI\autowire(\Cvgore\RandomThings\Configurator\GlobalMiddleware::class),
@@ -36,6 +36,7 @@ return [
         DI\autowire(\Cvgore\RandomThings\Controller\EPrescription::class),
         DI\autowire(\Cvgore\RandomThings\Controller\RandomYoutubeVideo::class),
         DI\autowire(\Cvgore\RandomThings\Controller\CalendarDay::class),
+        DI\autowire(\Cvgore\RandomThings\Controller\MapaInternetowUnavailableVideos::class),
     ],
 
     '#gif_chain_repositories' => [
@@ -45,6 +46,20 @@ return [
 
     '#fancy_font.generator.fire' => DI\autowire(\Cvgore\RandomThings\Generator\FancyFontGenerator::class)
         ->constructor(DI\get(\Cvgore\RandomThings\FancyFont\FireFancyFontFamily::class)),
+
+    '#cli.commands' => [
+        DI\autowire(\Cvgore\RandomThings\Console\Migrate::class),
+        DI\autowire(\Cvgore\RandomThings\Console\CheckVideosAvailability::class),
+        DI\autowire(\Cvgore\RandomThings\Console\Cron::class),
+    ],
+
+    '#cli.cron' => [
+        [
+            DI\create(\Cron\CronExpression::class)
+                ->constructor(DI\get('mapa_internetow.check_videos_availability.cron')),
+            'check-videos-availability'
+        ]
+    ],
 
     \Symfony\Component\Serializer\SerializerInterface::class =>
         DI\autowire(\Symfony\Component\Serializer\Serializer::class)
@@ -57,11 +72,20 @@ return [
                 DI\autowire(\Symfony\Component\Serializer\Normalizer\JsonSerializableNormalizer::class),
                 DI\autowire(\Symfony\Component\Serializer\Normalizer\DateTimeNormalizer::class),
                 DI\autowire(\Symfony\Component\Serializer\Normalizer\ArrayDenormalizer::class),
-                DI\autowire(\Symfony\Component\Serializer\Normalizer\ObjectNormalizer::class),
+                DI\autowire(\Symfony\Component\Serializer\Normalizer\ObjectNormalizer::class)
+                    ->constructorParameter(
+                        'propertyTypeExtractor',
+                        DI\autowire(\Symfony\Component\PropertyInfo\PropertyInfoExtractor::class)
+                            ->constructor([], [
+                                new \Symfony\Component\PropertyInfo\Extractor\PhpDocExtractor(),
+                                new \Symfony\Component\PropertyInfo\Extractor\ReflectionExtractor()
+                            ])
+                    ),
                 DI\autowire(\Symfony\Component\Serializer\Normalizer\PropertyNormalizer::class),
                 DI\autowire(\Symfony\Component\Serializer\Normalizer\GetSetMethodNormalizer::class),
                 DI\autowire(\Symfony\Component\Serializer\Normalizer\UnwrappingDenormalizer::class),
                 DI\autowire(\Symfony\Component\Serializer\Normalizer\ProblemNormalizer::class),
+
             ]),
 
     \Cvgore\RandomThings\Provider\CurrentDateProvider::class => DI\autowire(),
@@ -88,4 +112,18 @@ return [
     \Cvgore\RandomThings\Generator\EPrescriptionGenerator::class => DI\autowire(),
     \Cvgore\RandomThings\Repository\External\YoutubeVideosRepository::class => DI\autowire(),
     \Cvgore\RandomThings\Repository\External\CalendarRepository::class => DI\autowire(),
+    \Cvgore\RandomThings\Repository\YoutubeVideosRepository::class => DI\autowire(),
+    \Cvgore\RandomThings\Repository\External\MapaInternetowRepository::class => DI\decorate(
+        function (object $inner) {
+            return new \Cvgore\RandomThings\Repository\InMemoryCacheRepository($inner);
+        }
+    ),
+
+    \SQLite3::class => DI\autowire()
+        ->constructor(
+            DI\string('{#path.root}/var/db.sqlite3'),
+            SQLITE3_OPEN_READWRITE | SQLITE3_OPEN_CREATE
+        )->method(
+            'enableExceptions', true
+        )
 ];

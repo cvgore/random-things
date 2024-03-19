@@ -27,7 +27,6 @@ final readonly class FancyFontGenerator
 
 		$canvas = $this->makeTextOnCanvas($text);
 
-		// TODO: limit memory usage to 5242880 / 5MiB
 		$stream = fopen('php://memory', 'w+');
 
 		if (! $stream) {

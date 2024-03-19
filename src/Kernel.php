@@ -4,11 +4,9 @@ declare(strict_types=1);
 
 namespace Cvgore\RandomThings;
 
-use Cvgore\RandomThings\Configurator\ConfiguratorInterface;
+use Cvgore\RandomThings\Runtime\RuntimeInterface;
 use DI\Container;
 use DI\ContainerBuilder;
-use Slim\App;
-use Slim\Factory\AppFactory;
 
 final readonly class Kernel
 {
@@ -37,27 +35,9 @@ final readonly class Kernel
 		$this->container = $builder->build();
 	}
 
-	public function initialize(): void
+	public function run(RuntimeInterface $runtime): void
 	{
-		$app = AppFactory::createFromContainer($this->container);
-		$this->container->set('app', $app);
-		$this->container->set(App::class, $app);
-		$this->runConfigurators();
-	}
-
-	public function run(): void
-	{
-		$this->container->get(App::class)->run();
-	}
-
-	private function runConfigurators(): void
-	{
-		/** @var ConfiguratorInterface[] $configurators */
-		$configurators = $this->container->get('#configurators');
-
-		foreach ($configurators as $configurator) {
-			$configurator->configure();
-		}
+		$runtime->start($this->container);
 	}
 
 	private function getResolvedEnv(): string

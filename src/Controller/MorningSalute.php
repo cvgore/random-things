@@ -6,7 +6,6 @@ namespace Cvgore\RandomThings\Controller;
 
 use Cvgore\RandomThings\Dto\SaluteResponse;
 use Cvgore\RandomThings\Generator\MorningSaluteGenerator;
-use Cvgore\RandomThings\Repository\External\GifChainRepository;
 use Cvgore\RandomThings\Repository\External\YoutubeVideosRepository;
 use Cvgore\RandomThings\Routing\HttpMethod;
 use DI\Attribute\Inject;
@@ -25,18 +24,18 @@ final readonly class MorningSalute implements ControllerInterface
 	#[Inject]
 	private MorningSaluteGenerator $morningSaluteGenerator;
 
-    #[Inject]
-    private YoutubeVideosRepository $youtubeVideosRepository;
+	#[Inject]
+	private YoutubeVideosRepository $youtubeVideosRepository;
 
 	public function getRoutePattern(): string
 	{
 		return '/v1/salute/morning';
 	}
 
-    public function getRouteMethod(): HttpMethod
-    {
-        return HttpMethod::Get;
-    }
+	public function getRouteMethod(): HttpMethod
+	{
+		return HttpMethod::Get;
+	}
 
 	public function handle(Request $request, Response $response): Response
 	{

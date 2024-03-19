@@ -17,5 +17,5 @@ interface ControllerInterface
 {
 	public function getRoutePattern(): string;
 
-    public function getRouteMethod(): HttpMethod;
+	public function getRouteMethod(): HttpMethod;
 }

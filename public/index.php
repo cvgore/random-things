@@ -7,5 +7,4 @@ require __DIR__ . '/../vendor/autoload.php';
 define('APP_DEFINE_GUARD', 1);
 
 $kernel = new Cvgore\RandomThings\Kernel();
-$kernel->initialize();
-$kernel->run();
+$kernel->run(new Cvgore\RandomThings\Runtime\WebRuntime());

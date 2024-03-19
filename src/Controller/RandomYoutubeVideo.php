@@ -28,15 +28,13 @@ final readonly class RandomYoutubeVideo implements ControllerInterface
 		return '/v1/youtube/random';
 	}
 
-    public function getRouteMethod(): HttpMethod
-    {
-        return HttpMethod::Get;
-    }
+	public function getRouteMethod(): HttpMethod
+	{
+		return HttpMethod::Get;
+	}
 
-	public function handle(
-		Request $request,
-		Response $response
-	): Response {
+	public function handle(Request $request, Response $response): Response
+	{
 		$url = $this->youtubeVideosRepository->getRandomVideoUrl();
 
 		if ($url === null) {
