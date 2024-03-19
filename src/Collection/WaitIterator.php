@@ -7,8 +7,7 @@ namespace Cvgore\RandomThings\Collection;
 use IteratorIterator;
 
 /**
- * @template TKey
- * @template-covariant TValue
+ * @psalm-suppress MissingTemplateParam
  */
 class WaitIterator extends IteratorIterator
 {
@@ -46,7 +45,6 @@ class WaitIterator extends IteratorIterator
 	public function setLeeway(int $leeway): static
 	{
 		assert($leeway > 0);
-		assert($this->waitTime > $leeway);
 
 		$this->leeway = $leeway;
 

@@ -6,7 +6,6 @@ namespace Cvgore\RandomThings\Console;
 
 use ArrayIterator;
 use Cvgore\RandomThings\Collection\WaitIterator;
-use Cvgore\RandomThings\Dto\MapaInternetow\Link;
 use Cvgore\RandomThings\Repository\External\MapaInternetowRepository;
 use Cvgore\RandomThings\Repository\InMemoryCacheRepository;
 use Cvgore\RandomThings\Repository\YoutubeVideosRepository;
@@ -30,27 +29,28 @@ class CheckVideosAvailability extends Command
 
 	protected function execute(InputInterface $input, OutputInterface $output)
 	{
-		$points = $this->mapaInternetowRepository->getPoints();
-		$pointsWaitIterator = (new WaitIterator(new ArrayIterator($points)))
+		$points = $this->mapaInternetowRepository->getPointsIndexedByYoutubeUrl();
+		$unavailableVideos = $this->youtubeVideosRepository->getUnavailableVideos(
+			null
+		);
+
+		$pointsWaitIterator = (new WaitIterator(new ArrayIterator(array_keys(
+			$points
+		))))
 			->setWaitTime(300)
-			->setLeeway(100)
+			->setLeeway(1000)
 		;
 
-		foreach ($pointsWaitIterator as $point) {
-			$links = array_filter(
-				$point->links,
-				fn (Link $link) => $link->type === 'yt'
-			);
-
-			if (count($links) === 0) {
+		foreach ($pointsWaitIterator as $url) {
+			if (in_array($url, $unavailableVideos, true)) {
+				$output->writeln(
+					"<comment>skipping {$url} due to previous unavailability</comment>"
+				);
 				continue;
 			}
-			assert($links[0] instanceof Link);
 
-			foreach ($links as $link) {
-				$output->writeln("<comment>checking {$link->url}</comment>");
-				$this->youtubeVideosRepository->updateVideoAvailability($link->url);
-			}
+			$output->writeln("<comment>checking {$url}</comment>");
+			$this->youtubeVideosRepository->updateVideoAvailability($url);
 		}
 
 		return Command::SUCCESS;

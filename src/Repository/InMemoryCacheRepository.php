@@ -26,7 +26,8 @@ final class InMemoryCacheRepository
 			return $this->cache[$name][$args];
 		}
 
-		$this->cache[$name][$args] = call_user_func_array([$this->inner, $name],
+		$this->cache[$name][$args] = call_user_func_array(
+			[$this->inner, $name],
 			$arguments
 		);
 		return $this->cache[$name][$args];

@@ -49,18 +49,29 @@ SQL
 	/**
 	 * @return string[]
 	 */
-	public function getUnavailableVideos(DateTimeInterface $since): array
+	public function getUnavailableVideos(?DateTimeInterface $since): array
 	{
-		$stmt = $this->db->prepare(
-			<<<SQL
+		if ($since !== null) {
+			$stmt = $this->db->prepare(
+				<<<SQL
 SELECT url
 FROM yt_videos_availability
 WHERE unavailable_since IS NOT NULL
 AND unavailable_since > :since
 SQL
-		);
+			);
 
-		$stmt->bindValue('since', $since->format(self::DATE_FORMAT));
+			$stmt->bindValue('since', $since->format(self::DATE_FORMAT));
+		} else {
+			$stmt = $this->db->prepare(
+				<<<SQL
+SELECT url
+FROM yt_videos_availability
+WHERE unavailable_since IS NOT NULL
+SQL
+			);
+		}
+
 		$result = $stmt->execute();
 
 		$set = [];
