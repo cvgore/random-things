@@ -99,8 +99,9 @@ return [
     \Cvgore\RandomThings\Generator\FancyFontGenerator::class => DI\autowire(),
     \Cvgore\RandomThings\FancyFont\FireFancyFontFamily::class => DI\autowire(),
 
-    \Random\Randomizer::class => DI\autowire()
-        ->constructorParameter('engine', new \Random\Engine\Secure()),
+    \Random\Randomizer::class => DI\factory(function () {
+        return new \Random\Randomizer(new \Random\Engine\Secure());
+    }),
 
     \Cvgore\RandomThings\Repository\External\GiphyRepository::class => DI\autowire(),
     \Cvgore\RandomThings\Repository\External\TenorGifRepository::class => DI\autowire(),
