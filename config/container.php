@@ -77,8 +77,8 @@ return [
                         'propertyTypeExtractor',
                         DI\autowire(\Symfony\Component\PropertyInfo\PropertyInfoExtractor::class)
                             ->constructor([], [
-                                new \Symfony\Component\PropertyInfo\Extractor\PhpDocExtractor(),
-                                new \Symfony\Component\PropertyInfo\Extractor\ReflectionExtractor()
+                                DI\autowire(\Symfony\Component\PropertyInfo\Extractor\PhpDocExtractor::class),
+                                DI\autowire(\Symfony\Component\PropertyInfo\Extractor\ReflectionExtractor::class),
                             ])
                     ),
                 DI\autowire(\Symfony\Component\Serializer\Normalizer\PropertyNormalizer::class),
