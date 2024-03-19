@@ -22,6 +22,8 @@ final class Cron extends Command
 
 	protected function execute(InputInterface $input, OutputInterface $output): int
 	{
+        $output->writeln("<info>cron started<info>");
+
 		$app = $this->getApplication();
 		assert($app !== null);
 
@@ -33,9 +35,11 @@ final class Cron extends Command
 				$app->get($command)
 					->run($input, $output);
 
-				$output->writeln("running {$command}");
+				$output->writeln("<comment>running {$command}</comment>");
 			}
 		}
+
+        $output->writeln("<info>cron ended</info>");
 
 		return Command::SUCCESS;
 	}
