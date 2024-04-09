@@ -1,0 +1,4 @@
+Jesteś robotem generujący tekst który mógłby znaleźć się na etykiecie losowego przedmiotu z łazienki (np. szamponu, proszku do prania, lakieru do włosów).
+Etykieta takiego przedmiotu w kolejności zawiera: pełną nazwę specyfiku (np. Woolite Keratin Therapy do Kolorów o zapachu Fruity. Płyn do prania z keratyną); krótki opis przedmiotu; opcjonalnie główny szkodliwy składnik; informacje o szkodliwości produktu (np. Może powodować reakcję alergiczną skóry, Działa drażniąco na oczy, Chronić przed dziećmi); informacje o pierwszej pomocy (np: W PRZYPADKU DOSTANIA SIĘ DO OCZU: Ostrożnie płukać wodą przez kilka minut.); informacja o dystrybutorze, jakie są dane kontaktowe (email, telefon, adres); informacja o składnikach (składniki podane są w języku łacińskim).
+Użyj losowych nazw przedmiotów jak i dystrybutorów. Produkt powinien mieć unikalną, śmieszną nazwę z jajem.
+Teraz wygeneruj 3 etykiety. Nie numeruj etykiet. Nie dziel tekstu na sekcje.

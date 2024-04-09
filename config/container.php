@@ -37,6 +37,7 @@ return [
         DI\autowire(\Cvgore\RandomThings\Controller\RandomYoutubeVideo::class),
         DI\autowire(\Cvgore\RandomThings\Controller\CalendarDay::class),
         DI\autowire(\Cvgore\RandomThings\Controller\MapaInternetowUnavailableVideos::class),
+        DI\autowire(\Cvgore\RandomThings\Controller\ToiletMode::class),
     ],
 
     '#gif_chain_repositories' => [
@@ -91,17 +92,21 @@ return [
     \Cvgore\RandomThings\Provider\CurrentDateProvider::class => DI\autowire(),
     \Cvgore\RandomThings\Formatter\NewsFormatter::class => DI\autowire(),
     \Cvgore\RandomThings\Formatter\WeatherPredictionsFormatter::class => DI\autowire(),
-    \Cvgore\RandomThings\Repository\SaluteRepository::class => DI\autowire()->method('init'),
     \Cvgore\RandomThings\Http\HttpClient::class => DI\autowire(),
-    \Cvgore\RandomThings\Generator\MorningSaluteGenerator::class => DI\autowire(),
     \Cvgore\RandomThings\Translator\WindSpeedTranslator::class => DI\autowire(),
     \Cvgore\RandomThings\Translator\Translator::class => DI\autowire()->method('init'),
+    \Cvgore\RandomThings\Generator\MorningSaluteGenerator::class => DI\autowire(),
     \Cvgore\RandomThings\Generator\FancyFontGenerator::class => DI\autowire(),
+    \Cvgore\RandomThings\Generator\ToiletModeTextGenerator::class => DI\autowire(),
+    \Cvgore\RandomThings\Generator\EPrescriptionGenerator::class => DI\autowire(),
     \Cvgore\RandomThings\FancyFont\FireFancyFontFamily::class => DI\autowire(),
 
     \Random\Randomizer::class => DI\factory(function () {
         return new \Random\Randomizer(new \Random\Engine\Secure());
     }),
+
+    \Cvgore\RandomThings\Repository\YoutubeVideosRepository::class => DI\autowire(),
+    \Cvgore\RandomThings\Repository\SaluteRepository::class => DI\autowire()->method('init'),
 
     \Cvgore\RandomThings\Repository\External\GiphyRepository::class => DI\autowire(),
     \Cvgore\RandomThings\Repository\External\TenorGifRepository::class => DI\autowire(),
@@ -110,10 +115,9 @@ return [
     \Cvgore\RandomThings\Repository\External\MultipleWeatherForecastRepository::class => DI\autowire(),
     \Cvgore\RandomThings\Repository\External\GifChainRepository::class => DI\autowire(),
     \Cvgore\RandomThings\Repository\External\NewsRepository::class => DI\autowire(),
-    \Cvgore\RandomThings\Generator\EPrescriptionGenerator::class => DI\autowire(),
     \Cvgore\RandomThings\Repository\External\YoutubeVideosRepository::class => DI\autowire(),
     \Cvgore\RandomThings\Repository\External\CalendarRepository::class => DI\autowire(),
-    \Cvgore\RandomThings\Repository\YoutubeVideosRepository::class => DI\autowire(),
+    \Cvgore\RandomThings\Repository\External\OpenAiRepository::class => DI\autowire(),
     \Cvgore\RandomThings\Repository\External\MapaInternetowRepository::class => DI\decorate(
         function (object $inner) {
             return new \Cvgore\RandomThings\Repository\InMemoryCacheRepository($inner);

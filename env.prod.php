@@ -59,4 +59,7 @@ return [
 
     'mapa_internetow.url' => 'https://raw.githubusercontent.com/polskie-mapy/data/master/data.json',
     'mapa_internetow.check_videos_availability.cron' => '0 0 * * 1',
+
+    'openai.url' => 'https://api.openai.com',
+    'openai.api_key' => '',
 ];

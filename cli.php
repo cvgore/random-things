@@ -15,4 +15,3 @@ define('APP_DEFINE_GUARD', 1);
 
 $kernel = new Cvgore\RandomThings\Kernel();
 $kernel->run(new Cvgore\RandomThings\Runtime\CliRuntime());
-

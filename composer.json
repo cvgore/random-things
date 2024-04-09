@@ -11,7 +11,8 @@
         "guzzlehttp/guzzle": "^7.8",
         "ext-imagick": "*",
         "phpoption/phpoption": "^1.9",
-        "dragonmantank/cron-expression": "^3.3"
+        "dragonmantank/cron-expression": "^3.3",
+        "illuminate/collections": "^11.0"
     },
     "autoload": {
         "psr-4": {
