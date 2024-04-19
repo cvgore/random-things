@@ -40,8 +40,7 @@ final readonly class MorningSalute implements ControllerInterface
 	public function handle(Request $request, Response $response): Response
 	{
 		$salute = $this->morningSaluteGenerator->generate();
-//		$gifUrl = $this->youtubeVideosRepository->getRandomVideoUrl();
-        $gifUrl = '';
+		$gifUrl = $this->youtubeVideosRepository->getRandomVideoUrl();
 
 		$body = new SaluteResponse(salute: $salute, gifUrl: $gifUrl);
 
