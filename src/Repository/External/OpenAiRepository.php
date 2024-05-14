@@ -40,11 +40,11 @@ final readonly class OpenAiRepository
                         'content' => $prompt,
                     ]
                 ],
-                'temperature' => $temperature ?? 1.45,
+                'temperature' => $temperature ?? 1.15,
                 'max_tokens' => $maxTokens ?? 2048,
-                'top_p' => $topP ?? 0.64,
+                'top_p' => $topP ?? 0.62,
                 'frequency_penalty' => $frequencyPenalty ?? 0.18,
-                'presence_penalty' => $presencePenalty ?? 0.21,
+                'presence_penalty' => $presencePenalty ?? 0.25,
 			]
 		);
 
