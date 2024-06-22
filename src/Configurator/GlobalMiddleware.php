@@ -18,7 +18,7 @@ final readonly class GlobalMiddleware implements ConfiguratorInterface
 	public function configure(): void
 	{
 		foreach ($this->middleware as $middleware) {
-			$this->app->add($middleware);
+			$this->app->addMiddleware($middleware);
 		}
 	}
 }

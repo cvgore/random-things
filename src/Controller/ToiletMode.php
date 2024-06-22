@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Cvgore\RandomThings\Controller;
 
-use Cvgore\RandomThings\Calculator\NextEasterCalculator;
-use Cvgore\RandomThings\Dto\NextEasterResponse;
 use Cvgore\RandomThings\Dto\ToiletModeResponse;
 use Cvgore\RandomThings\Generator\ToiletModeTextGenerator;
 use Cvgore\RandomThings\Routing\HttpMethod;

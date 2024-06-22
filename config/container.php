@@ -19,13 +19,19 @@ return [
         DI\autowire(\Cvgore\RandomThings\Configurator\Router::class),
         DI\autowire(\Cvgore\RandomThings\Configurator\NotFoundFallbackRouter::class),
         DI\autowire(\Cvgore\RandomThings\Configurator\ErrorHandler::class),
+        DI\autowire(\Cvgore\RandomThings\Configurator\Cors::class),
     ],
 
     '#global_middleware' => [
-        DI\autowire(\Cvgore\RandomThings\Middleware\Cors::class),
-        DI\autowire(\Cvgore\RandomThings\Middleware\ApiKey::class),
-        DI\autowire(\Cvgore\RandomThings\Middleware\JsonBodyParser::class),
+        // li-fo
+        // last in order
         DI\autowire(\Cvgore\RandomThings\Middleware\QueryParamsParser::class),
+        DI\autowire(\Cvgore\RandomThings\Middleware\JsonBodyParser::class),
+        DI\autowire(\Cvgore\RandomThings\Middleware\ProgramAccess::class),
+        DI\autowire(\Cvgore\RandomThings\Middleware\ApiKey::class),
+        DI\autowire(\Cvgore\RandomThings\Middleware\ControllerMetadata::class),
+        DI\autowire(\Cvgore\RandomThings\Middleware\HardenSetup::class),
+        // first in order
     ],
 
     '#controllers' => [
@@ -38,6 +44,9 @@ return [
         DI\autowire(\Cvgore\RandomThings\Controller\CalendarDay::class),
         DI\autowire(\Cvgore\RandomThings\Controller\MapaInternetowUnavailableVideos::class),
         DI\autowire(\Cvgore\RandomThings\Controller\ToiletMode::class),
+        DI\autowire(\Cvgore\RandomThings\Controller\Morda::class),
+        DI\autowire(\Cvgore\RandomThings\Controller\MordaFeedback::class),
+        DI\autowire(\Cvgore\RandomThings\Controller\CheckAccess::class),
     ],
 
     '#gif_chain_repositories' => [
@@ -99,6 +108,7 @@ return [
     \Cvgore\RandomThings\Generator\FancyFontGenerator::class => DI\autowire(),
     \Cvgore\RandomThings\Generator\ToiletModeTextGenerator::class => DI\autowire(),
     \Cvgore\RandomThings\Generator\EPrescriptionGenerator::class => DI\autowire(),
+    \Cvgore\RandomThings\Generator\MordaTauntsGenerator::class => DI\autowire(),
     \Cvgore\RandomThings\FancyFont\FireFancyFontFamily::class => DI\autowire(),
 
     \Random\Randomizer::class => DI\factory(function () {
@@ -106,6 +116,7 @@ return [
     }),
 
     \Cvgore\RandomThings\Repository\YoutubeVideosRepository::class => DI\autowire(),
+    \Cvgore\RandomThings\Repository\MordaTauntsRepository::class => DI\autowire(),
     \Cvgore\RandomThings\Repository\SaluteRepository::class => DI\autowire()->method('init'),
 
     \Cvgore\RandomThings\Repository\External\GiphyRepository::class => DI\autowire(),
