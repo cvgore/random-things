@@ -69,6 +69,11 @@ return [
             DI\create(\Cron\CronExpression::class)
                 ->constructor(DI\get('mapa_internetow.check_videos_availability.cron')),
             'check-videos-availability'
+        ],
+        [
+            DI\create(\Cron\CronExpression::class)
+                ->constructor(DI\get('ovh.check_servers_availability.cron')),
+            'check-ovh-servers-availability'
         ]
     ],
 

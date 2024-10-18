@@ -64,6 +64,7 @@ return [
     'openai.api_key' => '',
 
     'ovh.front.url' => 'https://www.ovh.com/engine/apiv6',
+    'ovh.check_servers_availability.cron' => '*/15 * * * *',
 
     'discord.url' => 'https://discord.com/api/v10',
     'discord.api_key' => '',
