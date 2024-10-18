@@ -24,7 +24,10 @@ final readonly class JsonBodyParser implements MiddlewareInterface
 	{
 		$contentType = $request->getHeaderLine('Content-Type');
 
-		if ($request->getMethod() === 'POST' && str_contains($contentType, 'application/json')) {
+		if ($request->getMethod() === 'POST' && str_contains(
+			$contentType,
+			'application/json'
+		)) {
 			$routeCtx = RouteContext::fromRequest($request);
 			assert($routeCtx->getRoute() !== null);
 			$controller = $routeCtx->getRoute()

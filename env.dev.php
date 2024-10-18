@@ -62,4 +62,11 @@ return [
 
     'openai.url' => 'https://api.openai.com',
     'openai.api_key' => '',
+
+    'ovh.front.url' => 'https://www.ovh.com/engine/apiv6',
+
+    'discord.url' => 'https://discord.com/api/v10',
+    'discord.api_key' => '',
+
+    'notifications.discord.user_id' => '',
 ];

@@ -18,7 +18,7 @@ final class Cron extends Command
 	 * @var array<int,array{0:CronExpression,1:string}> $entries
 	 */
 	#[Inject(name: '#cli.cron')]
-	private array $entries;
+	private readonly array $entries;
 
 	protected function execute(InputInterface $input, OutputInterface $output): int
 	{

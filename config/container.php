@@ -61,6 +61,7 @@ return [
         DI\autowire(\Cvgore\RandomThings\Console\Migrate::class),
         DI\autowire(\Cvgore\RandomThings\Console\CheckVideosAvailability::class),
         DI\autowire(\Cvgore\RandomThings\Console\Cron::class),
+        DI\autowire(\Cvgore\RandomThings\Console\CheckOvhServersAvailability::class),
     ],
 
     '#cli.cron' => [
@@ -115,6 +116,8 @@ return [
         return new \Random\Randomizer(new \Random\Engine\Secure());
     }),
 
+    \Cvgore\RandomThings\Repository\CacheRepository::class => DI\autowire(),
+
     \Cvgore\RandomThings\Repository\YoutubeVideosRepository::class => DI\autowire(),
     \Cvgore\RandomThings\Repository\MordaTauntsRepository::class => DI\autowire(),
     \Cvgore\RandomThings\Repository\SaluteRepository::class => DI\autowire()->method('init'),
@@ -134,6 +137,8 @@ return [
             return new \Cvgore\RandomThings\Repository\InMemoryCacheRepository($inner);
         }
     ),
+
+    \Cvgore\RandomThings\Repository\External\Discord\ChannelsRepository::class => DI\autowire(),
 
     \SQLite3::class => DI\autowire()
         ->constructor(

@@ -22,10 +22,10 @@ use Symfony\Component\Console\Output\OutputInterface;
 class CheckVideosAvailability extends Command
 {
 	#[Inject(MapaInternetowRepository::class)]
-	private MapaInternetowRepository|InMemoryCacheRepository $mapaInternetowRepository;
+	private readonly MapaInternetowRepository|InMemoryCacheRepository $mapaInternetowRepository;
 
 	#[Inject]
-	private YoutubeVideosRepository $youtubeVideosRepository;
+	private readonly YoutubeVideosRepository $youtubeVideosRepository;
 
 	protected function execute(InputInterface $input, OutputInterface $output)
 	{

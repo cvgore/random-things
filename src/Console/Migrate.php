@@ -15,7 +15,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 final class Migrate extends Command
 {
 	#[Inject]
-	private Migrator $migrator;
+	private readonly Migrator $migrator;
 
 	protected function execute(InputInterface $input, OutputInterface $output): int
 	{
