@@ -21,19 +21,6 @@ final readonly class FrontOvhRepository
 	public function isAvailableServer(): array
 	{
 		$body = $this->client
-			->withHeader('Accept', '*/*')
-			->withHeader('Accept-Encoding', 'gzip, deflate, br')
-			->withHeader('Accept-Language', 'pl-PL,pl;q=0.9')
-			->withHeader('Host', 'www.ovh.com')
-			->withHeader('Origin', 'https://eco.ovhcloud.com')
-			->withHeader('Referer', 'https://eco.ovhcloud.com/')
-			->withHeader('Sec-Fetch-Dest', 'empty')
-			->withHeader('Sec-Fetch-Mode', 'cors')
-			->withHeader('Sec-Fetch-Site', 'cross-site')
-			->withHeader(
-				'User-Agent',
-				'Mozilla/5.0 (iPhone14,6; U; CPU iPhone OS 15_4 like Mac OS X) AppleWebKit/602.1.50 (KHTML, like Gecko) Version/10.0 Mobile/19E241 Safari/602.1'
-			)
 			->get("{$this->baseUrl}/dedicated/server/datacenter/availabilities", [
 				'excludeDatacenters' => 'false',
 				'planCode' => '24ska01',
