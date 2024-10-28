@@ -11,15 +11,24 @@ if (!defined('APP_DEFINE_GUARD')) die;
 return [
     'api_keys' => [],
     'show_errors' => false,
+    'sentry.dsn' => '',
 
     '#path.root' => realpath(__DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR),
 
     '#configurators' => [
-        DI\autowire(\Cvgore\RandomThings\Configurator\GlobalMiddleware::class),
-        DI\autowire(\Cvgore\RandomThings\Configurator\Router::class),
-        DI\autowire(\Cvgore\RandomThings\Configurator\NotFoundFallbackRouter::class),
-        DI\autowire(\Cvgore\RandomThings\Configurator\ErrorHandler::class),
-        DI\autowire(\Cvgore\RandomThings\Configurator\Cors::class),
+        DI\autowire(\Cvgore\RandomThings\Configurator\Common\Sentry::class),
+    ],
+
+    '#cli.configurators' => [
+        DI\autowire(\Cvgore\RandomThings\Configurator\Cli\SetSentryContext::class),
+    ],
+
+    '#web.configurators' => [
+        DI\autowire(\Cvgore\RandomThings\Configurator\Web\GlobalMiddleware::class),
+        DI\autowire(\Cvgore\RandomThings\Configurator\Web\Router::class),
+        DI\autowire(\Cvgore\RandomThings\Configurator\Web\NotFoundFallbackRouter::class),
+        DI\autowire(\Cvgore\RandomThings\Configurator\Web\ErrorHandler::class),
+        DI\autowire(\Cvgore\RandomThings\Configurator\Web\Cors::class),
     ],
 
     '#global_middleware' => [

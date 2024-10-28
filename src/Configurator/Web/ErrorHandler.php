@@ -2,8 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Cvgore\RandomThings\Configurator;
+namespace Cvgore\RandomThings\Configurator\Web;
 
+use Cvgore\RandomThings\Configurator\ConfiguratorInterface;
+use Cvgore\RandomThings\Exception\Handler\Web\SentryProxyErrorHandler;
 use DI\Attribute\Inject;
 use Psr\Container\ContainerInterface;
 use Slim\App;
@@ -25,7 +27,11 @@ final readonly class ErrorHandler implements ConfiguratorInterface
 		ini_set('display_startup_errors', $showErrors);
 		ini_set('expose_php', 0);
 
-		$this->app
+		$middleware = $this->app
 			->addErrorMiddleware($showErrors, true, true);
+
+		$middleware->setDefaultErrorHandler(new SentryProxyErrorHandler(
+			$middleware->getDefaultErrorHandler()
+		));
 	}
 }

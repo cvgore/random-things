@@ -7,10 +7,12 @@ namespace Cvgore\RandomThings\Http;
 use ArrayObject;
 use Cvgore\RandomThings\Routing\HttpMethod;
 use GuzzleHttp\Client;
-use GuzzleHttp\Exception\RequestException;
+use GuzzleHttp\Handler\CurlHandler;
+use GuzzleHttp\HandlerStack;
+use GuzzleHttp\Middleware;
 use GuzzleHttp\RequestOptions;
-use JsonException;
 use Psr\Http\Message\ResponseInterface;
+use Sentry\Tracing\GuzzleTracingMiddleware;
 
 final readonly class HttpClient
 {
@@ -27,64 +29,56 @@ final readonly class HttpClient
 	 */
 	public function __construct()
 	{
+		$stack = new HandlerStack();
+		$stack->setHandler(new CurlHandler());
+		$stack->push(GuzzleTracingMiddleware::trace());
+		$stack->push(Middleware::httpErrors());
+
 		$this->client = new Client([
 			RequestOptions::HEADERS => [
 				self::HEADER_USER_AGENT => 'random-things/v1.0 (email:random@cvgo.re)',
 				self::HEADER_ACCEPT => 'application/json',
 			],
+            RequestOptions::HTTP_ERRORS => true,
+			'handler' => $stack,
+            RequestOptions::TIMEOUT => 30,
+            RequestOptions::CONNECT_TIMEOUT => 30,
+            RequestOptions::READ_TIMEOUT => 30
 		]);
 		$this->oneshotConfig = new ArrayObject();
 	}
 
 	public function get(string $url, array $query = []): ?array
 	{
-		try {
-			$response = $this->raw(HttpMethod::Get, $url, [
-				RequestOptions::QUERY => $query,
-				...$this->oneshotConfig->getArrayCopy(),
-			]);
-			$this->oneshotConfig->exchangeArray([]);
+		$response = $this->raw(HttpMethod::Get, $url, [
+			RequestOptions::QUERY => $query,
+			...$this->oneshotConfig->getArrayCopy(),
+		]);
+		$this->oneshotConfig->exchangeArray([]);
 
-			if ($response?->getStatusCode() !== 200) {
-				return null;
-			}
-
-			assert($response !== null);
-
-			return json_decode(
-				json: (string) $response->getBody(),
-				associative: true,
-				flags: JSON_THROW_ON_ERROR
-			);
-		} catch (JsonException) {
-			return null;
-		}
+		return json_decode(
+			json: (string) $response->getBody(),
+			associative: true,
+			flags: JSON_THROW_ON_ERROR
+		);
 	}
 
 	public function post(string $url, array $body): ?array
 	{
-		try {
-			$response = $this->raw(HttpMethod::Post, $url, [
-				RequestOptions::JSON => $body,
-				...$this->oneshotConfig->getArrayCopy(),
-			]);
+		$response = $this->raw(HttpMethod::Post, $url, [
+			RequestOptions::JSON => $body,
+			...$this->oneshotConfig->getArrayCopy(),
+		]);
 
-			$this->oneshotConfig->exchangeArray([]);
+		$this->oneshotConfig->exchangeArray([]);
 
-			if ($response?->getStatusCode() !== 200) {
-				return null;
-			}
+		assert($response !== null);
 
-			assert($response !== null);
-
-			return json_decode(
-				json: (string) $response->getBody(),
-				associative: true,
-				flags: JSON_THROW_ON_ERROR
-			);
-		} catch (JsonException) {
-			return null;
-		}
+		return json_decode(
+			json: (string) $response->getBody(),
+			associative: true,
+			flags: JSON_THROW_ON_ERROR
+		);
 	}
 
 	public function raw(
@@ -92,11 +86,7 @@ final readonly class HttpClient
 		string $url,
 		array $options = []
 	): ?ResponseInterface {
-		try {
-			return $this->client->request($method->value, $url, $options);
-		} catch (RequestException $ex) {
-			return $ex->getResponse();
-		}
+		return $this->client->request($method->value, $url, $options);
 	}
 
 	public function withHeader(string $name, string $value): self

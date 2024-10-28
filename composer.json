@@ -15,7 +15,8 @@
         "illuminate/collections": "^11.0",
         "symfony/uid": "^7.1",
         "symfony/console": "^6.4",
-        "phpdocumentor/reflection-docblock": "^5.4"
+        "phpdocumentor/reflection-docblock": "^5.4",
+        "sentry/sentry": "^4.9"
     },
     "autoload": {
         "psr-4": {

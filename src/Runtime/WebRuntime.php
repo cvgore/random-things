@@ -23,8 +23,15 @@ final class WebRuntime implements RuntimeInterface
 
 	private function runConfigurators(Container $container): void
 	{
+        /** @var ConfiguratorInterface[] $configurators */
+        $configurators = $container->get('#configurators');
+
+        foreach ($configurators as $configurator) {
+            $configurator->configure();
+        }
+
 		/** @var ConfiguratorInterface[] $configurators */
-		$configurators = $container->get('#configurators');
+		$configurators = $container->get('#web.configurators');
 
 		foreach ($configurators as $configurator) {
 			$configurator->configure();

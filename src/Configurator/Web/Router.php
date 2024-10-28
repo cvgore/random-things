@@ -2,8 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Cvgore\RandomThings\Configurator;
+namespace Cvgore\RandomThings\Configurator\Web;
 
+use Cvgore\RandomThings\Configurator\ConfiguratorInterface;
 use Cvgore\RandomThings\Controller\ControllerInterface;
 use Cvgore\RandomThings\Routing\ObjectRequestArgs;
 use DI\Attribute\Inject;

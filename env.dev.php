@@ -70,4 +70,6 @@ return [
     'discord.api_key' => '',
 
     'notifications.discord.user_id' => '',
+
+    'sentry.dsn' => ''
 ];

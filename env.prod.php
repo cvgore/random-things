@@ -71,4 +71,5 @@ return [
 
     'notifications.discord.user_id' => '',
 
+    'sentry.dsn' => '',
 ];
