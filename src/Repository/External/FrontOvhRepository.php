@@ -61,6 +61,10 @@ final readonly class FrontOvhRepository
 			return [];
 		}
 
+        if (!is_array($body)) {
+            return [];
+        }
+
 		assert(array_is_list($body));
 		assert(count($body) === 1);
 		assert(is_array($body[0]));
