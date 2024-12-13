@@ -20,9 +20,9 @@ final class Point
 		public array              $coords,
 		public ?bool               $assumedCoords,
 		/**
-		 * @var Submitter[]
+		 * @var Submitter[]|null
 		 */
-		public array              $submitters,
+		public ?array              $submitters,
 		/**
 		 * @var Link[]
 		 */

@@ -72,4 +72,8 @@ return [
     'notifications.discord.user_id' => '',
 
     'sentry.dsn' => '',
+
+    'subs_reminder.url' => '',
+
+    'currency_api.url' => 'https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies'
 ];
