@@ -1,4 +1,4 @@
-## 🅱️ambolełoooooo @today
+## ☃ambolełoooooo świąteczne 🎄 @today
 🗓️ Dziś jest dzień: **@dayOf**
 🧑 Imieniny: @nameDays
 Pogoda:
@@ -6,3 +6,5 @@ Pogoda:
 Z ważnych rzeczy:
 @news
 🎥Losowy filmik z mapki internetów na dziś 🎥
+
+@xmasCountdown

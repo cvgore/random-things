@@ -6,6 +6,7 @@ namespace Cvgore\RandomThings\Generator;
 
 use Cvgore\RandomThings\Formatter\NewsFormatter;
 use Cvgore\RandomThings\Formatter\WeatherPredictionsFormatter;
+use Cvgore\RandomThings\Processors\MorningSalute\MorningSaluteProcessor;
 use Cvgore\RandomThings\Provider\CurrentDateProvider;
 use Cvgore\RandomThings\Repository\External\CalendarRepository;
 use Cvgore\RandomThings\Repository\External\MultipleWeatherForecastRepository;
@@ -17,31 +18,16 @@ use DI\Attribute\Inject;
 final readonly class MorningSaluteGenerator
 {
 	#[Inject]
-	private NameDaysRepository $nameDaysRepository;
-
-	#[Inject]
-	private CurrentDateProvider $currentDateProvider;
-
-	#[Inject]
-	private MultipleWeatherForecastRepository $weatherForecastRepository;
-
-	#[Inject]
-	private WeatherPredictionsFormatter $weatherPredictionsFormatter;
-
-	#[Inject]
-	private NewsRepository $newsRepository;
-
-	#[Inject]
-	private NewsFormatter $newsFormatter;
-
-	#[Inject]
 	private PathGenerator $pathGenerator;
 
-	#[Inject]
-	private Translator $translator;
+    #[Inject]
+    private Translator $translator;
 
-	#[Inject]
-	private CalendarRepository $calendarRepository;
+    /**
+     * @var MorningSaluteProcessor[]
+     */
+    #[Inject(name: '#processors.morning_salute')]
+    private array $processors;
 
 	public function generate(): string
 	{
@@ -51,32 +37,13 @@ final readonly class MorningSaluteGenerator
 			$this->pathGenerator->getResourcePath("morning-salute-{$lang}.tpl")
 		);
 
-		$nameDays = $this->nameDaysRepository->getRandomNameDaysForToday();
-		$nameDays = $nameDays
-			? implode(',', $nameDays)
-			: $this->translator->translate('namedays.no-data');
+        $placeholders = array_map(
+            fn(MorningSaluteProcessor $processor) => $processor->getPlaceholder(), $this->processors
+        );
+        $replacements = array_map(
+            fn(MorningSaluteProcessor $processor) => $processor->generate(), $this->processors
+        );
 
-		$weatherPredictions = $this->weatherForecastRepository->getForecastForToday();
-		$weatherPredictions = $this->weatherPredictionsFormatter->format(
-			$weatherPredictions
-		);
-
-		$news = $this->newsRepository->getRandomTopNews();
-		$news = $this->newsFormatter->format($news);
-
-		$dayOf = $this->calendarRepository->getRandomCalendarDay()
-			?? $this->translator->translate('calendar.no-data');
-
-		return str_replace(
-			['@today', '@nameDays', '@weatherPredictions', '@news', '@dayOf'],
-			[
-				$this->currentDateProvider->todayLong(),
-				$nameDays,
-				$weatherPredictions,
-				$news,
-				$dayOf,
-			],
-			$template
-		);
+		return str_replace($placeholders, $replacements, $template);
 	}
 }

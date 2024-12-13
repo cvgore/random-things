@@ -66,6 +66,15 @@ return [
     '#fancy_font.generator.fire' => DI\autowire(\Cvgore\RandomThings\Generator\FancyFontGenerator::class)
         ->constructor(DI\get(\Cvgore\RandomThings\FancyFont\FireFancyFontFamily::class)),
 
+    '#processors.morning_salute' => [
+        DI\autowire(\Cvgore\RandomThings\Processors\MorningSalute\DayOfProcessor::class),
+        DI\autowire(\Cvgore\RandomThings\Processors\MorningSalute\NameDaysProcessor::class),
+        DI\autowire(\Cvgore\RandomThings\Processors\MorningSalute\NewsProcessor::class),
+        DI\autowire(\Cvgore\RandomThings\Processors\MorningSalute\TodayProcessor::class),
+        DI\autowire(\Cvgore\RandomThings\Processors\MorningSalute\WeatherPredictionsProcessor::class),
+        DI\autowire(\Cvgore\RandomThings\Processors\MorningSalute\XmasCountdownProcessor::class),
+    ],
+
     '#cli.commands' => [
         DI\autowire(\Cvgore\RandomThings\Console\Migrate::class),
         DI\autowire(\Cvgore\RandomThings\Console\CheckVideosAvailability::class),
